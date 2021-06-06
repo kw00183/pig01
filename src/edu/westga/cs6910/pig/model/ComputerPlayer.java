@@ -7,7 +7,7 @@ package edu.westga.cs6910.pig.model;
  * @author CS6910, Kim Weible
  * @version Summer 2021
  */
-public class ComputerPlayer extends AbstractPlayer implements Player {
+public class ComputerPlayer extends AbstractPlayer {
 	private static final String NAME = "Simple computer";
 	private String name;
 	private int maximumRolls;
