@@ -48,12 +48,12 @@ public abstract class AbstractPlayer {
 			this.isMyTurn = true;
 		}
 	}
-	
+
 	private void validRoll(int die1Value, int die2Value) {
 		this.turnTotal += die1Value + die2Value;
 		this.total += die1Value + die2Value;
 	}
-	
+
 	private void invalidRoll() {
 		this.total -= this.turnTotal;
 		this.isMyTurn = false;
