@@ -6,7 +6,7 @@ package edu.westga.cs6910.pig.model;
  * @author CS6910
  * @version Summer 2021
  */
-public class HumanPlayer extends AbstractPlayer implements Player {
+public class HumanPlayer extends AbstractPlayer {
 	private String name;
 
 	/**
