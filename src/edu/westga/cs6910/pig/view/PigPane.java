@@ -4,6 +4,9 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -39,13 +42,26 @@ public class PigPane extends BorderPane {
 		
 		this.addFirstPlayerChooserPane(theGame);		
 		
-		// TODO: 1. Using the 'first player chooser pane' as a guide
-		//  Create an HBox with the appropriate style, then make a human
-		//	player pane and add it to the HBox. Finally add the HBox to the content pane	
-	
-		// TODO: 2. Using the other panes as a guide, create and add a status pane	
-
-		// TODO: 3. Using the other panes as a guide, create and add a computer pane
+		HBox humanBox = new HBox();
+		humanBox.getStyleClass().add("pane-border");
+		humanBox.setPrefWidth(150);
+		this.pnHumanPlayer = new HumanPane(theGame);
+		humanBox.getChildren().add(this.pnHumanPlayer);
+		this.pnContent.setLeft(humanBox);
+		
+		HBox statusBox = new HBox();
+		statusBox.getStyleClass().add("pane-border");
+		statusBox.setPrefWidth(375);
+		this.pnGameInfo = new StatusPane(theGame);
+		statusBox.getChildren().add(this.pnGameInfo);
+		this.pnContent.setCenter(statusBox);
+		
+		HBox computerBox = new HBox();
+		computerBox.getStyleClass().add("pane-border");
+		computerBox.setPrefWidth(175);
+		this.pnComputerPlayer = new ComputerPane(theGame);
+		computerBox.getChildren().add(this.pnComputerPlayer);
+		this.pnContent.setRight(computerBox);
 
 		this.setCenter(this.pnContent);
 	}
