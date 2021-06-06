@@ -7,7 +7,7 @@ package edu.westga.cs6910.pig.model;
  * @author Kim Weible
  * @version Summer 2021
  */
-public abstract class AbstractPlayer {
+public abstract class AbstractPlayer implements Player {
 	private DicePair thePair;
 	private boolean isMyTurn;
 	private int total;
