@@ -42,6 +42,14 @@ public class PigPane extends BorderPane {
 		
 		this.addFirstPlayerChooserPane(theGame);		
 		
+		// TODO: 1. Using the 'first player chooser pane' as a guide
+		//  Create an HBox with the appropriate style, then make a human
+		//	player pane and add it to the HBox. Finally add the HBox to the content pane	
+		
+		// TODO: 2. Using the other panes as a guide, create and add a status pane	
+
+		// TODO: 3. Using the other panes as a guide, create and add a computer pane
+		
 		HBox humanBox = new HBox();
 		humanBox.getStyleClass().add("pane-border");
 		humanBox.setPrefWidth(150);
