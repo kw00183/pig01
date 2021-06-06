@@ -184,6 +184,7 @@ public class Game implements Observable {
 			currentPlayer = this.theComputer;
 			this.currentPlayerObject.setValue(this.getComputerPlayer());
 		}
+		this.currentPlayerObject.getValue().resetTurnTotal();
 	}
 
 	@Override
