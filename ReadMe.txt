@@ -1,3 +1,3 @@
 I made the assumption that I needed to create an HBox (radioBox) for the radio buttons in the PigPane with a spacing of 20, in order for the radio buttons to layout successfully with a small amount of padding in between. This allowed me to get teh same result as the provided jar file game.
 
-I worked under the assumption that the javadoc comment error for @see in the ComputerPane class would resolve once the AbstractPlayer class was built correctly.
+I worked under the assumption that the javadoc comment error for @see in the ComputerPane class would resolve once the AbstractPlayer class was built correctly, but that appears to be wrong. I was getting an error because of the "-" inside the parentheses, so I removed those to get it to work.
