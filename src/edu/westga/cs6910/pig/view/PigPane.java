@@ -4,9 +4,6 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -155,9 +152,11 @@ public class PigPane extends BorderPane {
 			@Override
 			public void handle(ActionEvent event) {
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
-				// TODO: Enable the human player pane and start a game
+				// Enable the human player pane and start a game
 				//		 with the human playing first.
-
+				
+				PigPane.this.pnHumanPlayer.setDisable(false);
+				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
 		}
 	}
