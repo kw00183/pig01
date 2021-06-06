@@ -12,7 +12,7 @@ public class HumanPlayer extends AbstractPlayer implements Player {
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
 	 * 
-	 * @param name
+	 * @param name 
 	 *            this Player's name
 	 * 
 	 * @requires name != null
