@@ -19,6 +19,7 @@ public abstract class AbstractPlayer {
 	 */
 	AbstractPlayer() {
 		this.thePair = new DicePair();
+		this.total = 0;
 	}
 
 	/**
@@ -30,23 +31,32 @@ public abstract class AbstractPlayer {
 		this.turnTotal = 0;
 	}
 
-	protected void processTurn(String name) {
+	protected void processTurn(Boolean isComputer) {
 		this.thePair.rollDice();
 
 		int die1Value = this.thePair.getDie1Value();
 		int die2Value = this.thePair.getDie2Value();
-		if (die1Value == 1 || die2Value == 1) {
-			this.total -= this.turnTotal;
-			this.isMyTurn = false;
+		if (isComputer && (die1Value == 1 || die2Value == 1)) {
+			this.invalidRoll();
 			return;
-		} else if (name.equals("Simple computer")) {
-			this.turnTotal += die1Value + die2Value;
-			this.total += die1Value + die2Value;
+		} else if (die1Value == 1 || die2Value == 1) {
+			this.invalidRoll();
+		} else if (isComputer) {
+			this.validRoll(die1Value, die2Value);
 		} else {
-			this.turnTotal += die1Value + die2Value;
-			this.total += die1Value + die2Value;
+			this.validRoll(die1Value, die2Value);
 			this.isMyTurn = true;
 		}
+	}
+	
+	private void validRoll(int die1Value, int die2Value) {
+		this.turnTotal += die1Value + die2Value;
+		this.total += die1Value + die2Value;
+	}
+	
+	private void invalidRoll() {
+		this.total -= this.turnTotal;
+		this.isMyTurn = false;
 	}
 
 	/**
