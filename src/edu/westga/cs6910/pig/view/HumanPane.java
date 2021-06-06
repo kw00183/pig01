@@ -12,8 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Defines the panel that lets the user indicate whether they want to 
- * 	roll or hold on their turn
+ * Defines the panel that lets the user indicate whether they want to roll or
+ * hold on their turn
  * 
  * @author CS6910
  * @version Summer 2021
@@ -23,35 +23,37 @@ public class HumanPane extends GridPane implements InvalidationListener {
 	private Button btnRoll;
 	private Button btnHold;
 	private Label lblTurnTotal;
-	
+
 	private HumanPlayer theHuman;
 	private Game theGame;
 
 	/**
-	 * Creates a new HumanPane that observes the specified game. 
+	 * Creates a new HumanPane that observes the specified game.
 	 * 
-	 * @param theGame	the model object from which this pane gets its data
+	 * @param theGame
+	 *            the model object from which this pane gets its data
 	 * 
-	 * @requires 	theGame != null
+	 * @requires theGame != null
 	 */
 	public HumanPane(Game theGame) {
 		this.theGame = theGame;
 		this.theGame.addListener(this);
-		
+
 		this.theHuman = this.theGame.getHumanPlayer();
-		
+
 		this.buildPane();
 	}
-	
+
 	private void buildPane() {
 		HBox topBox = new HBox();
-		topBox.getStyleClass().add("box-center");	
+		topBox.getStyleClass().add("box-center");
 		topBox.getStyleClass().add("box-padding");
-		topBox.getChildren().add(new Label("~~ " + this.theHuman.getName() + " ~~"));
+		topBox.getChildren()
+				.add(new Label("~~ " + this.theHuman.getName() + " ~~"));
 		this.add(topBox, 0, 0, 2, 1);
-		
+
 		HBox middleBox = new HBox();
-		middleBox.getStyleClass().add("box-padding");		
+		middleBox.getStyleClass().add("box-padding");
 		middleBox.getChildren().add(new Label("Dice Values: "));
 		this.lblDiceValues = new Label("-, -");
 		middleBox.getChildren().add(this.lblDiceValues);
@@ -62,12 +64,12 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		this.btnRoll = new Button("Roll");
 		this.btnRoll.setOnAction(new TakeTurnListener());
 		buttonBox.getChildren().add(this.btnRoll);
-		
+
 		this.btnHold = new Button("Hold");
 		this.btnHold.setOnAction(new HoldListener());
 		buttonBox.getChildren().add(this.btnHold);
 		this.add(buttonBox, 0, 2);
-		
+
 		HBox bottomBox = new HBox();
 		bottomBox.getStyleClass().add("box-padding");
 		bottomBox.getChildren().add(new Label("Turn Total: "));
@@ -84,9 +86,9 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		String result = this.theHuman.getDiceValues();
 		this.lblDiceValues.setText(result);
 		this.lblTurnTotal.setText("" + turnTotal);
-		
+
 		this.setDisable(!myTurn);
-		
+
 		if (this.theGame.isGameOver()) {
 			this.setDisable(true);
 			return;
@@ -94,9 +96,9 @@ public class HumanPane extends GridPane implements InvalidationListener {
 	}
 
 	private class TakeTurnListener implements EventHandler<ActionEvent> {
-		/** 
+		/**
 		 * Tells the Game to have its current player (i.e., the human Player)
-		 * take its turn.	
+		 * take its turn.
 		 * 
 		 */
 		@Override
@@ -106,11 +108,11 @@ public class HumanPane extends GridPane implements InvalidationListener {
 			}
 		}
 	}
-	
+
 	private class HoldListener implements EventHandler<ActionEvent> {
-		/** 
-		 * Tells the Game that its current player (i.e., the human Player)
-		 * will be holding	
+		/**
+		 * Tells the Game that its current player (i.e., the human Player) will
+		 * be holding
 		 * 
 		 */
 		@Override
