@@ -43,9 +43,9 @@ public class PigPane extends BorderPane {
 		
 		this.addFirstPlayerChooserPane(theGame);		
 		
-		// TODO: 1. Using the 'first player chooser pane' as a guide
-		//  Create an HBox with the appropriate style, then make a human
-		//	player pane and add it to the HBox. Finally add the HBox to the content pane
+		// Using the 'first player chooser pane' as a guide
+		// Create an HBox with the appropriate style, then make a human
+		// player pane and add it to the HBox. Finally add the HBox to the content pane
 		
 		HBox humanBox = new HBox();
 		humanBox.getStyleClass().add("pane-border");
@@ -54,7 +54,7 @@ public class PigPane extends BorderPane {
 		humanBox.getChildren().add(this.pnHumanPlayer);
 		this.pnContent.setLeft(humanBox);
 		
-		// TODO: 2. Using the other panes as a guide, create and add a status pane
+		// Using the other panes as a guide, create and add a status pane
 		
 		HBox statusBox = new HBox();
 		statusBox.getStyleClass().add("pane-border");
@@ -63,7 +63,7 @@ public class PigPane extends BorderPane {
 		statusBox.getChildren().add(this.pnGameInfo);
 		this.pnContent.setCenter(statusBox);
 
-		// TODO: 3. Using the other panes as a guide, create and add a computer pane
+		// Using the other panes as a guide, create and add a computer pane
 		
 		HBox computerBox = new HBox();
 		computerBox.getStyleClass().add("pane-border");
@@ -109,19 +109,19 @@ public class PigPane extends BorderPane {
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first");	
 			this.radHumanPlayer.setOnAction(new HumanFirstListener());
 			
-			// TODO: Instantiate the computer player button and add 
-			//		 ComputerFirstListener as its action listener.
+			// Instantiate the computer player button and add 
+			// ComputerFirstListener as its action listener.
 			
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");	
 			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 			
-			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
+			// Create a ToggleGroup and add the 2 radio buttons to it.
 			
 			ToggleGroup radioGroup = new ToggleGroup();
 			this.radHumanPlayer.setToggleGroup(radioGroup);
 			this.radComputerPlayer.setToggleGroup(radioGroup);
 			
-			// TODO: Add the 2 radio buttons to this pane.
+			// Add the 2 radio buttons to this pane.
 			HBox radioBox = new HBox();
 			radioBox.setSpacing(20);
 			radioBox.getChildren().addAll(this.radHumanPlayer, this.radComputerPlayer);

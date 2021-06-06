@@ -35,7 +35,8 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	public ComputerPane(Game theGame) {
 		this.theGame = theGame;
 		
-		// TODO: Add this object as an listener of the Game.
+		// Add this object as an listener of the Game.
+		this.theGame.addListener(this);
 		
 		this.theComputer = this.theGame.getComputerPlayer();
 		
@@ -43,7 +44,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	}
 	
 	private void buildPane() {
-		// TODO: Using the other pane classes as a model, build this pane.
+		// Using the other pane classes as a model, build this pane.
 		
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("box-center");	
