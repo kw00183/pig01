@@ -46,8 +46,9 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {
+		boolean isComputer = true;
 		for (int count = 0; count < this.maximumRolls; count++) {
-			this.processTurn(true);
+			this.processTurn(isComputer);
 		}
 		this.setIsMyTurn(false);
 	}
