@@ -17,21 +17,13 @@ import edu.westga.cs6910.pig.model.HumanPlayer;
 public class HumanPlayerWhenGetDiceValues {
 
 	/**
-	 * SUNNY-DAY Test the getDiceValues return a string containing more than the
-	 * ", " characters.
+	 * SUNNY-DAY Test the getDiceValues return a string containing the default
+	 * "1, 1" characters.
 	 */
 	@Test
 	public void testGetDiceValues() {
 		HumanPlayer player = new HumanPlayer("Human");
-		boolean dicePopulated = false;
 
-		String testDiceValues = player.getDiceValues();
-		int testDiceValueLength = testDiceValues.length();
-
-		if (testDiceValueLength > 2) {
-			dicePopulated = true;
-		}
-
-		assertEquals(true, dicePopulated);
+		assertEquals("1, 1", player.getDiceValues());
 	}
 }
