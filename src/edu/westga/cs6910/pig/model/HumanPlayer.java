@@ -27,7 +27,8 @@ public class HumanPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {
-		this.processTurn(false);
+		boolean isComputer = false;
+		this.processTurn(isComputer);
 	}
 
 	@Override
