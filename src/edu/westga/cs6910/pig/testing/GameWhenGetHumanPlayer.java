@@ -22,7 +22,7 @@ public class GameWhenGetHumanPlayer {
 	 * SUNNY-DAY Test the getHumanPlayer method with theHuman
 	 */
 	@Test
-	public void testPlayComputer() {
+	public void testGetHumanPlayer() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
