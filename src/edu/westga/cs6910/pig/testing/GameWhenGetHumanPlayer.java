@@ -27,6 +27,8 @@ public class GameWhenGetHumanPlayer {
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
 
+		theGame.startNewGame(theHuman);
+		
 		assertEquals("Human", theGame.getHumanPlayer().getName());
 	}
 }
