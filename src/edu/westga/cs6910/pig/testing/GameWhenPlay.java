@@ -22,7 +22,7 @@ public class GameWhenPlay {
 	 * get one turn, and it should reflect current player as human after play
 	 */
 	@Test
-	public void testPlayHuman() {
+	public void testPlayComputer() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
