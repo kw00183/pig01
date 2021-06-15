@@ -9,26 +9,27 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the getHumanPlayer method in the Game
+ * This is the JUnit testing class to test the isGameOver method in the Game
  * class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class GameWhenGetHumanPlayer {
+public class TestWhenGameIsGameOver {
 
 	/**
-	 * SUNNY-DAY Test the getHumanPlayer method with theHuman
+	 * SUNNY-DAY Test the isGameOver method is false when game starts
 	 */
 	@Test
-	public void testGetHumanPlayer() {
+	public void testIsGameOverWhenStart() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
 
-		theGame.startNewGame(theHuman);
-		
-		assertEquals("Human", theGame.getHumanPlayer().getName());
+		theGame.startNewGame(theComputer);
+		theGame.play();
+
+		assertEquals(false, theGame.isGameOver());
 	}
 }

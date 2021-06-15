@@ -9,32 +9,26 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the hold method in the Game class.
+ * This is the JUnit testing class to test the getHumanPlayer method in the Game
+ * class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class GameWhenHold {
+public class TestWhenGameGetHumanPlayer {
 
 	/**
-	 * SUNNY-DAY Test the hold method with theHuman player, because they are the
-	 * only player able to hold, and it should reflect current player as
-	 * computer after hold
+	 * SUNNY-DAY Test the getHumanPlayer method with theHuman
 	 */
 	@Test
-	public void testHoldHuman() {
+	public void testGetHumanPlayer() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
 
 		theGame.startNewGame(theHuman);
-		theGame.play();
 		
-		if (theGame.getCurrentPlayer().getName().equals("Human")) {
-			theGame.hold();
-		}
-
-		assertEquals("Simple computer", theGame.getCurrentPlayer().getName());
+		assertEquals("Human", theGame.getHumanPlayer().getName());
 	}
 }

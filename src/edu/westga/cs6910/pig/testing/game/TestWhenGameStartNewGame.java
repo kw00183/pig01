@@ -9,52 +9,40 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the getDicePair method in the Game
+ * This is the JUnit testing class to test the startNewGame method in the Game
  * class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class GameWhenGetDicePair {
+public class TestWhenGameStartNewGame {
 
 	/**
-	 * SUNNY-DAY Test the getDicePair method on die 1
+	 * SUNNY-DAY Test the startNewGame method with theHuman player
 	 */
 	@Test
-	public void testGetDicePairDie1() {
+	public void testStartNewGameHuman() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
-		boolean isRolled = false;
 
-		theGame.startNewGame(theComputer);
-		theGame.play();
-		
-		if (theGame.getDicePair().getDie1Value() > 0) {
-			isRolled = true;
-		}
+		theGame.startNewGame(theHuman);
 
-		assertEquals(true, isRolled);
+		assertEquals("Human", theGame.getCurrentPlayer().getName());
 	}
-	
+
 	/**
-	 * SUNNY-DAY Test the getDicePair method on die 2
+	 * SUNNY-DAY Test the startNewGame method with theComputer player
 	 */
 	@Test
-	public void testGetDicePairDie2() {
+	public void testStartNewGameComputer() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
-		boolean isRolled = false;
 
 		theGame.startNewGame(theComputer);
-		theGame.play();
-		
-		if (theGame.getDicePair().getDie2Value() > 0) {
-			isRolled = true;
-		}
 
-		assertEquals(true, isRolled);
+		assertEquals("Simple computer", theGame.getCurrentPlayer().getName());
 	}
 }

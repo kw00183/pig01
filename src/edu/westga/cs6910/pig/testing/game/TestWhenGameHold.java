@@ -9,27 +9,32 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the isGameOver method in the Game
- * class.
+ * This is the JUnit testing class to test the hold method in the Game class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class GameWhenIsGameOver {
+public class TestWhenGameHold {
 
 	/**
-	 * SUNNY-DAY Test the isGameOver method is false when game starts
+	 * SUNNY-DAY Test the hold method with theHuman player, because they are the
+	 * only player able to hold, and it should reflect current player as
+	 * computer after hold
 	 */
 	@Test
-	public void testIsGameOverWhenStart() {
+	public void testHoldHuman() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
 
-		theGame.startNewGame(theComputer);
+		theGame.startNewGame(theHuman);
 		theGame.play();
+		
+		if (theGame.getCurrentPlayer().getName().equals("Human")) {
+			theGame.hold();
+		}
 
-		assertEquals(false, theGame.isGameOver());
+		assertEquals("Simple computer", theGame.getCurrentPlayer().getName());
 	}
 }

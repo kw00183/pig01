@@ -9,26 +9,26 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the toString method in the Game
- * class.
+ * This is the JUnit testing class to test the getComputerPlayer method in the
+ * Game class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class GameWhenToString {
+public class TestWhenGameGetComputerPlayer {
 
 	/**
-	 * SUNNY-DAY Test the toString method on game start
+	 * SUNNY-DAY Test the getComputerPlayer method with theComputer
 	 */
 	@Test
-	public void testToString() {
+	public void testGetComputerPlayer() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
 
 		theGame.startNewGame(theComputer);
-
-		assertEquals("Goal Score: 20\r\n" + "Human: 0\r\n" + "Simple computer: 0", theGame.toString());
+		
+		assertEquals("Simple computer", theGame.getComputerPlayer().getName());
 	}
 }
