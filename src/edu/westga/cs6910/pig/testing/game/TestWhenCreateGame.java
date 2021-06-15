@@ -15,19 +15,31 @@ import edu.westga.cs6910.pig.model.HumanPlayer;
  * @version Summer 2021
  *
  */
-public class GameWhenCreateGame {
+public class TestWhenCreateGame {
 
 	/**
 	 * SUNNY-DAY Test the constructor accepts the players, initializes them and
-	 * returns the player names with getter
+	 * returns the human player name with getter
 	 */
 	@Test
-	public void testCreateGame() {
+	public void testCreateGameHuman() {
 		HumanPlayer theHuman = new HumanPlayer("Human");
 		ComputerPlayer theComputer = new ComputerPlayer();
 		Game theGame = new Game(theHuman, theComputer);
 
 		assertEquals("Human", theGame.getHumanPlayer().getName());
+	}
+
+	/**
+	 * SUNNY-DAY Test the constructor accepts the players, initializes them and
+	 * returns the computer player name with getter
+	 */
+	@Test
+	public void testCreateGameComputer() {
+		HumanPlayer theHuman = new HumanPlayer("Human");
+		ComputerPlayer theComputer = new ComputerPlayer();
+		Game theGame = new Game(theHuman, theComputer);
+
 		assertEquals("Simple computer", theGame.getComputerPlayer().getName());
 	}
 }
