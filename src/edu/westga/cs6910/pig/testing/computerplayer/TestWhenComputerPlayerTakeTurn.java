@@ -23,42 +23,17 @@ public class TestWhenComputerPlayerTakeTurn {
 	@Test
 	public void testTakeTurn() {
 		ComputerPlayer player = new ComputerPlayer();
-		boolean multipleRolls = false;
+		boolean differentRolls = false;
 
-		player.setMaximumRolls(5);
-		player.takeTurn();
-		String roll1 = player.getDiceValues();
-		player.setIsMyTurn(true);
-		
-		player.setMaximumRolls(5);
-		player.takeTurn();
-		String roll2 = player.getDiceValues();
-		player.setIsMyTurn(true);
-		
-		player.setMaximumRolls(5);
-		player.takeTurn();
-		String roll3 = player.getDiceValues();
-		player.setIsMyTurn(true);
-		
-		player.setMaximumRolls(5);
-		player.takeTurn();
-		String roll4 = player.getDiceValues();
-		player.setIsMyTurn(true);
-		
-		player.setMaximumRolls(5);
-		player.takeTurn();
-		String roll5 = player.getDiceValues();
-		player.setIsMyTurn(true);
-
-		String allRolls = (roll1 + roll2 + roll3 + roll4 + roll5)
-				.replace("1", "").replace(", ", "");
-		int rollsGreaterThanOne = allRolls.length();
-		System.out.print(rollsGreaterThanOne);
-
-		if (rollsGreaterThanOne > 0) {
-			multipleRolls = true;
+		for (int count = 0; count < 5; count++) {
+			player.setMaximumRolls(5);
+			player.takeTurn();
+			String roll = player.getDiceValues();
+			player.setIsMyTurn(true);
+			if (roll.replace("1", "").replace(", ", "").length() > 0) {
+				differentRolls = true;
+			}
 		}
-
-		assertEquals(true, multipleRolls);
+		assertEquals(true, differentRolls);
 	}
 }
