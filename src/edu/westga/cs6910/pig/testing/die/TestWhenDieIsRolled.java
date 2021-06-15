@@ -1,5 +1,6 @@
 package edu.westga.cs6910.pig.testing.die;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -29,5 +30,23 @@ public class TestWhenDieIsRolled {
 				fail("Rolled a die with value: " + testDie.getNumberOfPips());
 			}
 		}
+	}
+
+	/**
+	 * SUNNY-DAY Test the roll method after the die is created and roll die
+	 * 10000 times and get a 2 at least 1 time (just need it to roll something
+	 * other than the start value of 1)
+	 */
+	@Test
+	public void testDieRolled10000Rolls2() {
+		boolean rolled2 = false;
+		Die testDie = new Die();
+		for (int count = 0; count < 10000; count++) {
+			testDie.roll();
+			if (testDie.getNumberOfPips() == 2) {
+				rolled2 = true;
+			}
+		}
+		assertEquals(true, rolled2);
 	}
 }
