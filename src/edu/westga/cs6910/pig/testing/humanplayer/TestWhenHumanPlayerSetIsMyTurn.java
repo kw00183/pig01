@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.HumanPlayer;
  * @version Summer 2021
  *
  */
-public class HumanPlayerWhenSetIsMyTurn {
+public class TestWhenHumanPlayerSetIsMyTurn {
 
 	/**
 	 * SUNNY-DAY Test passing true to the setIsMyTurn method for the human

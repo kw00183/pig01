@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.HumanPlayer;
  * @version Summer 2021
  *
  */
-public class HumanPlayerWhenGetName {
+public class TestWhenHumanPlayerGetName {
 
 	/**
 	 * SUNNY-DAY Test returning the correct name passed to class

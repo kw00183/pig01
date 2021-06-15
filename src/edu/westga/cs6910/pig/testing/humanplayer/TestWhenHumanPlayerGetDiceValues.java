@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.HumanPlayer;
  * @version Summer 2021
  *
  */
-public class HumanPlayerWhenGetDiceValues {
+public class TestWhenHumanPlayerGetDiceValues {
 
 	/**
 	 * SUNNY-DAY Test the getDiceValues return a string containing the default

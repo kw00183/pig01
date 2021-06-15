@@ -7,22 +7,23 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the getIsMyTurn method extended to
- * the HumanPlayer class.
+ * This is the JUnit testing class to test the getTotal method extended to the
+ * HumanPlayer class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class HumanPlayerWhenGetIsMyTurn {
+public class TestWhenHumanPlayerGetTotal {
 
 	/**
-	 * SUNNY-DAY Test getter for the getIsMyTurn method for the human player
+	 * SUNNY-DAY Test the getTotal method returns 0 when human player
+	 * initialized
 	 */
 	@Test
-	public void testGetIsMyTurn() {
+	public void testGetTotal() {
 		HumanPlayer player = new HumanPlayer("Human");
 
-		assertEquals(false, player.getIsMyTurn());
+		assertEquals(0, player.getTotal());
 	}
 }

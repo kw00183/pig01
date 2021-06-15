@@ -7,23 +7,22 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
 /**
- * This is the JUnit testing class to test the constructor in the HumanPlayer
- * class.
+ * This is the JUnit testing class to test the getIsMyTurn method extended to
+ * the HumanPlayer class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class HumanPlayerWhenCreateHumanPlayer {
+public class TestWhenHumanPlayerGetIsMyTurn {
 
 	/**
-	 * SUNNY-DAY Test the constructor accepts the name and initializes the
-	 * HumanPlayer object
+	 * SUNNY-DAY Test getter for the getIsMyTurn method for the human player
 	 */
 	@Test
-	public void testCreateHumanPlayer() {
+	public void testGetIsMyTurn() {
 		HumanPlayer player = new HumanPlayer("Human");
 
-		assertEquals("Human", player.getName());
+		assertEquals(false, player.getIsMyTurn());
 	}
 }
