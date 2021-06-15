@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.ComputerPlayer;
  * @version Summer 2021
  *
  */
-public class ComputerPlayerWhenSetIsMyTurn {
+public class TestWhenComputerPlayerSetIsMyTurn {
 
 	/**
 	 * SUNNY-DAY Test passing true to the setIsMyTurn method for the computer

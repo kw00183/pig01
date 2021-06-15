@@ -7,23 +7,22 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 
 /**
- * This is the JUnit testing class to test the getDiceValues method extended to
+ * This is the JUnit testing class to test the getIsMyTurn method extended to
  * the ComputerPlayer class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class ComputerPlayerWhenGetDiceValues {
+public class TestWhenComputerPlayerGetIsMyTurn {
 
 	/**
-	 * SUNNY-DAY Test the getDiceValues return a string containing the default
-	 * "1, 1" characters.
+	 * SUNNY-DAY Test getter for the getIsMyTurn method for the computer player
 	 */
 	@Test
-	public void testGetDiceValues() {
+	public void testGetIsMyTurn() {
 		ComputerPlayer player = new ComputerPlayer();
 
-		assertEquals("1, 1", player.getDiceValues());
+		assertEquals(false, player.getIsMyTurn());
 	}
 }

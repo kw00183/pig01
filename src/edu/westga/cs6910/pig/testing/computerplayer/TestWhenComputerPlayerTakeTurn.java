@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.ComputerPlayer;
  * @version Summer 2021
  *
  */
-public class ComputerPlayerWhenTakeTurn {
+public class TestWhenComputerPlayerTakeTurn {
 
 	/**
 	 * SUNNY-DAY Test the takeTurn method is performing multiple rolls resulting

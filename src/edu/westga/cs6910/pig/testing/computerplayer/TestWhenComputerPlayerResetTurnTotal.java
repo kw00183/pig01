@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.ComputerPlayer;
  * @version Summer 2021
  *
  */
-public class ComputerPlayerWhenResetTurnTotal {
+public class TestWhenComputerPlayerResetTurnTotal {
 
 	/**
 	 * SUNNY-DAY Test reseting the turn total for the computer player

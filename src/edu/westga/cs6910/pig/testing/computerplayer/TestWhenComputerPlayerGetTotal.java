@@ -7,22 +7,23 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 
 /**
- * This is the JUnit testing class to test the getIsMyTurn method extended to
- * the ComputerPlayer class.
+ * This is the JUnit testing class to test the getTotal method extended to the
+ * ComputerPlayer class.
  * 
  * @author Kim Weible
  * @version Summer 2021
  *
  */
-public class ComputerPlayerWhenGetIsMyTurn {
+public class TestWhenComputerPlayerGetTotal {
 
 	/**
-	 * SUNNY-DAY Test getter for the getIsMyTurn method for the computer player
+	 * SUNNY-DAY Test the getTotal method returns 0 when computer player
+	 * initialized
 	 */
 	@Test
-	public void testGetIsMyTurn() {
+	public void testGetTotal() {
 		ComputerPlayer player = new ComputerPlayer();
 
-		assertEquals(false, player.getIsMyTurn());
+		assertEquals(0, player.getTotal());
 	}
 }
