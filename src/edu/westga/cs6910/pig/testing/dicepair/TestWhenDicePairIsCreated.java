@@ -17,19 +17,19 @@ import edu.westga.cs6910.pig.model.DicePair;
 public class TestWhenDicePairIsCreated {
 
 	/**
-	 * SUNNY-DAY Test the getDie1Value method when the die pair is created
+	 * SUNNY-DAY Test the constructor creates die 1 with pip value of 1
 	 */
 	@Test
-	public void testWithNewDiceDie1Equals1() {
+	public void testDicePairCreatedDie1Equals1() {
 		DicePair newDice = new DicePair();
 		assertEquals(1, newDice.getDie1Value());
 	}
 
 	/**
-	 * SUNNY-DAY Test the getDie2Value method when the die pair is created
+	 * SUNNY-DAY Test the constructor creates die 2 with pip value of 1
 	 */
 	@Test
-	public void testWithNewDiceDie2Equals1() {
+	public void testDicePairCreatedDie2Equals1() {
 		DicePair newDice = new DicePair();
 		assertEquals(1, newDice.getDie2Value());
 	}
