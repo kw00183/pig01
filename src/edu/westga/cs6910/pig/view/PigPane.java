@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
+import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 
 /**
  * Defines a GUI for the Pig game.
@@ -131,9 +132,29 @@ public class PigPane extends BorderPane {
 		greedyStrategyMenuItem.setText("Greedy");
 		greedyStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
 		
+		greedyStrategyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			 
+            @Override
+            public void handle(ActionEvent event) {
+            	GreedyStrategy strategy = new GreedyStrategy();
+            	ComputerPlayer theComputer = new ComputerPlayer(strategy);
+            	theComputer.setStrategy(strategy);
+            }
+        });
+		
 		MenuItem randomStrategyMenuItem = new MenuItem();
 		randomStrategyMenuItem.setText("Random");
 		randomStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+		
+		randomStrategyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			 
+            @Override
+            public void handle(ActionEvent event) {
+            	RandomStrategy strategy = new RandomStrategy();
+            	ComputerPlayer theComputer = new ComputerPlayer(strategy);
+            	theComputer.setStrategy(strategy);
+            }
+        });
 		
 		strategyMenu.getItems().addAll(cautiousStrategyMenuItem, greedyStrategyMenuItem, randomStrategyMenuItem);
 		return strategyMenu;
