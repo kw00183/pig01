@@ -1,8 +1,5 @@
 package edu.westga.cs6910.pig.view;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
@@ -13,7 +10,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -98,6 +94,15 @@ public class PigPane extends BorderPane {
 		MenuItem exitGameMenu = new MenuItem();
 		exitGameMenu.setText("Exit");
 		exitGameMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
+		
+		exitGameMenu.setOnAction(new EventHandler<ActionEvent>() {
+			 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.exit(0);
+            }
+        });
+		
 		gameMenu.getItems().add(exitGameMenu);
 		return gameMenu;
 	}
