@@ -16,9 +16,9 @@ public interface PigStrategy {
 	 * 
 	 * @param numberOfTurnRolls	the number of rolls already taken this turn
 	 * @param numberOfTurnPoints	the number of points rolled so far this turn
-	 * @param differenceBetweenTurnAndGoalPoints	The difference between the total points so far and the goal score
+	 * @param numberOfPointsNeededForWin	The difference between the total points so far and the goal score
 	 * @return boolean if the player should roll again, false otherwise
 	 */
 	boolean rollAgain(int numberOfTurnRolls, int numberOfTurnPoints,
-			int differenceBetweenTurnAndGoalPoints);
+			int numberOfPointsNeededForWin);
 }

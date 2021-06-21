@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the takeTurn method in the
@@ -22,7 +23,8 @@ public class TestWhenComputerPlayerTakeTurn {
 	 */
 	@Test
 	public void testTakeTurn() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 		boolean differentRolls = false;
 
 		for (int count = 0; count < 5; count++) {

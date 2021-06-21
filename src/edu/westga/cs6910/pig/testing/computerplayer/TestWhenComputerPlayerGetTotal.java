@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the getTotal method extended to the
@@ -22,7 +23,8 @@ public class TestWhenComputerPlayerGetTotal {
 	 */
 	@Test
 	public void testGetTotal() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 
 		assertEquals(0, player.getTotal());
 	}

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the getDiceValues method extended to
@@ -22,7 +23,8 @@ public class TestWhenComputerPlayerGetDiceValues {
 	 */
 	@Test
 	public void testGetDiceValues() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 
 		assertEquals("1, 1", player.getDiceValues());
 	}

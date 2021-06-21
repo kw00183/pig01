@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the setIsMyTurn method extended to
@@ -22,7 +23,8 @@ public class TestWhenComputerPlayerSetIsMyTurn {
 	 */
 	@Test
 	public void testSetIsMyTurnPassTrue() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 
 		player.setIsMyTurn(true);
 
@@ -35,7 +37,8 @@ public class TestWhenComputerPlayerSetIsMyTurn {
 	 */
 	@Test
 	public void testSetIsMyTurnPassFalse() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 
 		player.setIsMyTurn(false);
 

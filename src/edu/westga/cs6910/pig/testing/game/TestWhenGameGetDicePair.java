@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the getDicePair method in the Game
@@ -23,8 +24,9 @@ public class TestWhenGameGetDicePair {
 	 */
 	@Test
 	public void testGetDicePairDie1() {
+		CautiousStrategy strategy = new CautiousStrategy();
 		HumanPlayer theHuman = new HumanPlayer("Human");
-		ComputerPlayer theComputer = new ComputerPlayer();
+		ComputerPlayer theComputer = new ComputerPlayer(strategy);
 		Game theGame = new Game(theHuman, theComputer);
 		boolean isRolled = false;
 
@@ -43,8 +45,9 @@ public class TestWhenGameGetDicePair {
 	 */
 	@Test
 	public void testGetDicePairDie2() {
+		CautiousStrategy strategy = new CautiousStrategy();
 		HumanPlayer theHuman = new HumanPlayer("Human");
-		ComputerPlayer theComputer = new ComputerPlayer();
+		ComputerPlayer theComputer = new ComputerPlayer(strategy);
 		Game theGame = new Game(theHuman, theComputer);
 		boolean isRolled = false;
 

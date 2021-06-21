@@ -11,7 +11,7 @@ public class CautiousStrategy implements PigStrategy {
 
 	@Override
 	public boolean rollAgain(int numberOfTurnRolls, int numberOfTurnPoints,
-			int differenceBetweenTurnAndGoalPoints) {
+			int numberOfPointsNeededForWin) {
 		return false;
 	}
 }

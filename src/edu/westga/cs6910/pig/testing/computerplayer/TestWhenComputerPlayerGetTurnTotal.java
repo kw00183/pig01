@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the getTurnTotal method extended to
@@ -21,7 +22,8 @@ public class TestWhenComputerPlayerGetTurnTotal {
 	 */
 	@Test
 	public void testGetTurnTotal() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 
 		assertEquals(0, player.getTurnTotal());
 	}

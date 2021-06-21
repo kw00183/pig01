@@ -8,6 +8,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
+
 /**
  * Driver for the application. Creates the GUI and shows it.
  * 
@@ -18,8 +20,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+		CautiousStrategy strategy = new CautiousStrategy();
+		
 		primaryStage.setTitle("CS6910: Simple Pig");
-		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer());
+		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
 
 		PigPane root = new PigPane(theGame);
 		Scene scene = new Scene(root, 700, 225);

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * This is the JUnit testing class to test the getIsMyTurn method extended to
@@ -21,7 +22,8 @@ public class TestWhenComputerPlayerGetIsMyTurn {
 	 */
 	@Test
 	public void testGetIsMyTurn() {
-		ComputerPlayer player = new ComputerPlayer();
+		CautiousStrategy strategy = new CautiousStrategy();
+		ComputerPlayer player = new ComputerPlayer(strategy);
 
 		assertEquals(false, player.getIsMyTurn());
 	}
