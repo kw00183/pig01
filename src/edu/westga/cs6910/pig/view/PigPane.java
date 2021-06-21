@@ -4,12 +4,15 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * Defines a GUI for the Pig game.
@@ -40,8 +43,8 @@ public class PigPane extends BorderPane {
 		
 		this.pnContent = new BorderPane();
 		
-		this.addFirstPlayerChooserPane(theGame);		
-
+		this.addFirstPlayerChooserPane(theGame);
+		
 		HBox humanBox = new HBox();
 		humanBox.getStyleClass().add("pane-border");
 		humanBox.setPrefWidth(150);
@@ -64,16 +67,31 @@ public class PigPane extends BorderPane {
 		PigPane.this.pnComputerPlayer.setDisable(true);
 		computerBox.getChildren().add(this.pnComputerPlayer);
 		this.pnContent.setRight(computerBox);
+		
+		VBox topBox = new VBox();
+		HBox menuBox = this.addMenu(theGame);
+		HBox playerBox = this.addFirstPlayerChooserPane(theGame);
+		topBox.getChildren().addAll(menuBox, playerBox);
+		this.pnContent.setTop(topBox);
 
 		this.setCenter(this.pnContent);
 	}
+	
+	private HBox addMenu(Game theGame) {
+		Menu menuGame = new Menu("Game");
+		Menu menuStrategy = new Menu("Strategy");
+		MenuBar menuBar = new MenuBar();
+		menuBar.getMenus().addAll(menuGame, menuStrategy);
+		HBox menuBox = new HBox(menuBar);
+		return menuBox;
+	}
 
-	private void addFirstPlayerChooserPane(Game theGame) {
-		HBox topBox = new HBox();
-		topBox.getStyleClass().add("pane-border");	
+	private HBox addFirstPlayerChooserPane(Game theGame) {
+		HBox playerBox = new HBox();
+		playerBox.getStyleClass().add("pane-border");	
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
-		topBox.getChildren().add(this.pnChooseFirstPlayer);
-		this.pnContent.setTop(topBox);
+		playerBox.getChildren().add(this.pnChooseFirstPlayer);
+		return playerBox; 
 	}
 
 	/**
