@@ -1,13 +1,19 @@
 package edu.westga.cs6910.pig.view;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -78,12 +84,41 @@ public class PigPane extends BorderPane {
 	}
 	
 	private HBox addMenu(Game theGame) {
-		Menu menuGame = new Menu("Game");
-		Menu menuStrategy = new Menu("Strategy");
+		Menu gameMenu = this.buildGameMenu();
+		Menu strategyMenu = this.buildStrategyMenu();
+		
 		MenuBar menuBar = new MenuBar();
-		menuBar.getMenus().addAll(menuGame, menuStrategy);
+		menuBar.getMenus().addAll(gameMenu, strategyMenu);
 		HBox menuBox = new HBox(menuBar);
 		return menuBox;
+	}
+	
+	private Menu buildGameMenu() {
+		Menu gameMenu = new Menu("Game");
+		MenuItem exitGameMenu = new MenuItem();
+		exitGameMenu.setText("Exit");
+		exitGameMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
+		gameMenu.getItems().add(exitGameMenu);
+		return gameMenu;
+	}
+	
+	private Menu buildStrategyMenu() {
+		Menu strategyMenu = new Menu("Strategy");
+		
+		MenuItem cautiousStrategyMenuItem = new MenuItem();
+		cautiousStrategyMenuItem.setText("Cautious");
+		cautiousStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
+		
+		MenuItem greedyStrategyMenuItem = new MenuItem();
+		greedyStrategyMenuItem.setText("Greedy");
+		greedyStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+		
+		MenuItem randomStrategyMenuItem = new MenuItem();
+		randomStrategyMenuItem.setText("Random");
+		randomStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+		
+		strategyMenu.getItems().addAll(cautiousStrategyMenuItem, greedyStrategyMenuItem, randomStrategyMenuItem);
+		return strategyMenu;
 	}
 
 	private HBox addFirstPlayerChooserPane(Game theGame) {
