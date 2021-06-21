@@ -1,5 +1,6 @@
 package edu.westga.cs6910.pig.view;
 
+import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
@@ -15,6 +16,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 /**
  * Defines a GUI for the Pig game.
@@ -91,11 +94,11 @@ public class PigPane extends BorderPane {
 	
 	private Menu buildGameMenu() {
 		Menu gameMenu = new Menu("Game");
-		MenuItem exitGameMenu = new MenuItem();
-		exitGameMenu.setText("Exit");
-		exitGameMenu.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
+		MenuItem exitGameMenuItem = new MenuItem();
+		exitGameMenuItem.setText("Exit");
+		exitGameMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
 		
-		exitGameMenu.setOnAction(new EventHandler<ActionEvent>() {
+		exitGameMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			 
             @Override
             public void handle(ActionEvent event) {
@@ -103,7 +106,7 @@ public class PigPane extends BorderPane {
             }
         });
 		
-		gameMenu.getItems().add(exitGameMenu);
+		gameMenu.getItems().add(exitGameMenuItem);
 		return gameMenu;
 	}
 	
@@ -113,6 +116,16 @@ public class PigPane extends BorderPane {
 		MenuItem cautiousStrategyMenuItem = new MenuItem();
 		cautiousStrategyMenuItem.setText("Cautious");
 		cautiousStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
+		
+		cautiousStrategyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			 
+            @Override
+            public void handle(ActionEvent event) {
+            	CautiousStrategy strategy = new CautiousStrategy();
+            	ComputerPlayer theComputer = new ComputerPlayer(strategy);
+            	theComputer.setStrategy(strategy);
+            }
+        });
 		
 		MenuItem greedyStrategyMenuItem = new MenuItem();
 		greedyStrategyMenuItem.setText("Greedy");
