@@ -31,31 +31,28 @@ public abstract class AbstractPlayer implements Player {
 		this.turnTotal = 0;
 	}
 
-	protected void processTurn(Boolean isComputer) {
+	protected void processTurn() {
 		this.thePair.rollDice();
 
 		int die1Value = this.thePair.getDie1Value();
 		int die2Value = this.thePair.getDie2Value();
-		if (isComputer && (die1Value == 1 || die2Value == 1)) {
+
+		if (die1Value == 1 || die2Value == 1) {
 			this.invalidRoll();
-			return;
-		} else if (die1Value == 1 || die2Value == 1) {
-			this.invalidRoll();
-		} else if (isComputer) {
-			this.validRoll(die1Value, die2Value);
 		} else {
 			this.validRoll(die1Value, die2Value);
-			this.isMyTurn = true;
 		}
 	}
 
 	private void validRoll(int die1Value, int die2Value) {
 		this.turnTotal += die1Value + die2Value;
 		this.total += die1Value + die2Value;
+		this.isMyTurn = true;
 	}
 
 	private void invalidRoll() {
 		this.total -= this.turnTotal;
+		this.resetTurnTotal();
 		this.isMyTurn = false;
 	}
 
@@ -104,6 +101,7 @@ public abstract class AbstractPlayer implements Player {
 	/**
 	 * Method used to return the total needed to win the Game
 	 * 
+	 * @see Player#getDifferenceWinTotal()
 	 * @return total the points needed this turn to win
 	 */
 	public int getDifferenceWinTotal() {
