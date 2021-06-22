@@ -18,7 +18,7 @@ public class TestWhenRandomStrategy {
 
 	/**
 	 * SUNNY-DAY Test the rollAgain method returns false when 50/50 and strategy
-	 * invoked 5 times
+	 * invoked 5 times and on second roll of turn
 	 */
 	@Test
 	void testRollAgainRandomReturnFalse() {
@@ -27,7 +27,7 @@ public class TestWhenRandomStrategy {
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
-			strategyRolled = strategy.rollAgain(4, 5, 6);
+			strategyRolled = strategy.rollAgain(2, 5, 6);
 			if (!strategyRolled) {
 				playerStrategyRolledFalse = true;
 			}
@@ -35,10 +35,10 @@ public class TestWhenRandomStrategy {
 
 		assertEquals(true, playerStrategyRolledFalse);
 	}
-	
+
 	/**
 	 * SUNNY-DAY Test the rollAgain method returns true when 50/50 and strategy
-	 * invoked 5 times
+	 * invoked 5 times and on second roll of turn
 	 */
 	@Test
 	void testRollAgainRandomReturnTrue() {
@@ -47,12 +47,32 @@ public class TestWhenRandomStrategy {
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
-			strategyRolled = strategy.rollAgain(4, 5, 6);
+			strategyRolled = strategy.rollAgain(2, 5, 6);
 			if (strategyRolled) {
 				playerStrategyRolledTrue = true;
 			}
 		}
 
 		assertEquals(true, playerStrategyRolledTrue);
+	}
+	
+	/**
+	 * BOUNDARY Test the rollAgain method returns false when 50/50 and strategy
+	 * invoked 5 times and on number of turns exceeds 2
+	 */
+	@Test
+	void testRollAgainRandomReturnFalseRoll3() {
+		RandomStrategy strategy = new RandomStrategy();
+		boolean playerStrategyRolledFalse = false;
+		boolean strategyRolled;
+
+		for (int count = 0; count < 5; count++) {
+			strategyRolled = strategy.rollAgain(3, 5, 6);
+			if (!strategyRolled) {
+				playerStrategyRolledFalse = true;
+			}
+		}
+
+		assertEquals(true, playerStrategyRolledFalse);
 	}
 }
