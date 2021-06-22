@@ -1,6 +1,5 @@
 package edu.westga.cs6910.pig.view;
 
-import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
@@ -123,9 +122,8 @@ public class PigPane extends BorderPane {
 			 
             @Override
             public void handle(ActionEvent event) {
-            	CautiousStrategy strategy = new CautiousStrategy();
-            	ComputerPlayer theComputer = new ComputerPlayer(strategy);
-            	theComputer.setStrategy(strategy);
+            	CautiousStrategy strategyCautious = new CautiousStrategy();
+            	PigPane.this.theGame.getComputerPlayer().setStrategy(strategyCautious);
             }
         });
 		
@@ -137,9 +135,8 @@ public class PigPane extends BorderPane {
 			 
             @Override
             public void handle(ActionEvent event) {
-            	GreedyStrategy strategy = new GreedyStrategy();
-            	ComputerPlayer theComputer = new ComputerPlayer(strategy);
-            	theComputer.setStrategy(strategy);
+            	GreedyStrategy strategyGreedy = new GreedyStrategy();
+            	PigPane.this.theGame.getComputerPlayer().setStrategy(strategyGreedy);
             }
         });
 		
@@ -151,9 +148,8 @@ public class PigPane extends BorderPane {
 			 
             @Override
             public void handle(ActionEvent event) {
-            	RandomStrategy strategy = new RandomStrategy();
-            	ComputerPlayer theComputer = new ComputerPlayer(strategy);
-            	theComputer.setStrategy(strategy);
+            	RandomStrategy strategyRandom = new RandomStrategy();
+            	PigPane.this.theGame.getComputerPlayer().setStrategy(strategyRandom);
             }
         });
 		
