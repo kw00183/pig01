@@ -13,7 +13,8 @@ public class RandomStrategy implements PigStrategy {
 	public boolean rollAgain(int numberOfTurnRolls, int numberOfTurnPoints,
 			int numberOfPointsNeededForWin) {
 		boolean shouldPlayerRoll = false;
-		if (Math.random() < 0.5) {
+		
+		if (Math.random() < 0.5 && numberOfTurnPoints > 0 && numberOfPointsNeededForWin > 0 && numberOfTurnRolls == 2) {
 			shouldPlayerRoll = true;
 		}
 		return shouldPlayerRoll;
