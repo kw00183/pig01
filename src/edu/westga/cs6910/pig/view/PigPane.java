@@ -8,7 +8,10 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -94,10 +97,14 @@ public class PigPane extends BorderPane {
 	}
 	
 	private Menu buildGameMenu() {
-		Menu gameMenu = new Menu("Game");
+		Menu gameMenu = new Menu("_Game");
+		gameMenu.setMnemonicParsing(true);
+		
 		MenuItem exitGameMenuItem = new MenuItem();
-		exitGameMenuItem.setText("Exit");
-		exitGameMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
+	    exitGameMenuItem.setText("_Exit");
+	    exitGameMenuItem.setMnemonicParsing(true);
+		
+	    exitGameMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN));
 		
 		exitGameMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			 
@@ -112,11 +119,17 @@ public class PigPane extends BorderPane {
 	}
 	
 	private Menu buildStrategyMenu() {
-		Menu strategyMenu = new Menu("Strategy");
+		Menu strategyMenu = new Menu("_Strategy");
+		strategyMenu.setMnemonicParsing(true);
 		
-		MenuItem cautiousStrategyMenuItem = new MenuItem();
-		cautiousStrategyMenuItem.setText("Cautious");
-		cautiousStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
+		ToggleGroup strategyGroup = new ToggleGroup();
+	    
+		RadioMenuItem cautiousStrategyMenuItem = new RadioMenuItem("_Cautious");
+		cautiousStrategyMenuItem.setMnemonicParsing(true);
+		
+		cautiousStrategyMenuItem.setToggleGroup(strategyGroup);
+		cautiousStrategyMenuItem.setSelected(true);
+		cautiousStrategyMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN));
 		
 		cautiousStrategyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			 
@@ -127,9 +140,11 @@ public class PigPane extends BorderPane {
             }
         });
 		
-		MenuItem greedyStrategyMenuItem = new MenuItem();
-		greedyStrategyMenuItem.setText("Greedy");
-		greedyStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+E"));
+		RadioMenuItem greedyStrategyMenuItem = new RadioMenuItem("Gr_eedy");
+		greedyStrategyMenuItem.setMnemonicParsing(true);
+		
+		greedyStrategyMenuItem.setToggleGroup(strategyGroup);
+		greedyStrategyMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 		
 		greedyStrategyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			 
@@ -140,9 +155,11 @@ public class PigPane extends BorderPane {
             }
         });
 		
-		MenuItem randomStrategyMenuItem = new MenuItem();
-		randomStrategyMenuItem.setText("Random");
-		randomStrategyMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+		RadioMenuItem randomStrategyMenuItem = new RadioMenuItem("_Random");
+		randomStrategyMenuItem.setMnemonicParsing(true);
+		
+		randomStrategyMenuItem.setToggleGroup(strategyGroup);
+		randomStrategyMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
 		
 		randomStrategyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			 
