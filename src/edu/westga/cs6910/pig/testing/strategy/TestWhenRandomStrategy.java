@@ -17,8 +17,8 @@ import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 public class TestWhenRandomStrategy {
 
 	/**
-	 * SUNNY-DAY Test the rollAgain method returns false when 50/50 and strategy
-	 * invoked 5 times and on second roll of turn
+	 * SUNNY-DAY Test the rollAgain method returns false at least 1 time when
+	 * 50/50 and strategy invoked 5 times
 	 */
 	@Test
 	void testRollAgainRandomReturnFalse() {
@@ -37,8 +37,8 @@ public class TestWhenRandomStrategy {
 	}
 
 	/**
-	 * SUNNY-DAY Test the rollAgain method returns true when 50/50 and strategy
-	 * invoked 5 times and on second roll of turn
+	 * SUNNY-DAY Test the rollAgain method returns true at least 1 time when
+	 * 50/50 and strategy invoked 5 times
 	 */
 	@Test
 	void testRollAgainRandomReturnTrue() {
@@ -54,25 +54,5 @@ public class TestWhenRandomStrategy {
 		}
 
 		assertEquals(true, playerStrategyRolledTrue);
-	}
-	
-	/**
-	 * BOUNDARY Test the rollAgain method returns false when 50/50 and strategy
-	 * invoked 5 times and on number of turns exceeds 2
-	 */
-	@Test
-	void testRollAgainRandomReturnFalseRoll3() {
-		RandomStrategy strategy = new RandomStrategy();
-		boolean playerStrategyRolledFalse = false;
-		boolean strategyRolled;
-
-		for (int count = 0; count < 5; count++) {
-			strategyRolled = strategy.rollAgain(3, 5, 6);
-			if (!strategyRolled) {
-				playerStrategyRolledFalse = true;
-			}
-		}
-
-		assertEquals(true, playerStrategyRolledFalse);
 	}
 }
