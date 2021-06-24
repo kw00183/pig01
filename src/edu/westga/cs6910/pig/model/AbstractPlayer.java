@@ -105,7 +105,7 @@ public abstract class AbstractPlayer implements Player {
 	 * @return total the points needed this turn to win
 	 */
 	public int getDifferenceWinTotal() {
-		return 20 - this.turnTotal;
+		return 20 - this.total;
 	}
 
 	/**
