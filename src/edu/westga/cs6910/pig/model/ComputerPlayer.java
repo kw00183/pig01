@@ -78,19 +78,19 @@ public class ComputerPlayer extends AbstractPlayer {
 
 		do {
 			numberOfTurnRolls++;
-
+			
 			shouldPlayerRoll = this.strategy.rollAgain(numberOfTurnRolls,
 					this.getTurnTotal(), this.getDifferenceWinTotal());
-
+			
 			this.setIsMyTurn(shouldPlayerRoll);
 			
-			if (this.getIsMyTurn()) {
+			if (this.getIsMyTurn() && this.getDifferenceWinTotal() > 0 && this.getTurnTotal() > 0) {
 				this.processTurn();
 			} else {
 				this.setIsMyTurn(false);
 			}
-
-		} while (this.getIsMyTurn() && this.getDifferenceWinTotal() > 0);
+			
+		} while (this.getIsMyTurn());
 	}
 
 	@Override
