@@ -14,7 +14,7 @@ public class RandomStrategy implements PigStrategy {
 			int numberOfPointsNeededForWin) {
 		boolean shouldPlayerRoll = false;
 		
-		if (Math.random() < 0.5 && numberOfTurnPoints > 0 && numberOfPointsNeededForWin > 0 && numberOfTurnRolls == 2) {
+		if (Math.random() < 0.5) {
 			shouldPlayerRoll = true;
 		}
 		return shouldPlayerRoll;
