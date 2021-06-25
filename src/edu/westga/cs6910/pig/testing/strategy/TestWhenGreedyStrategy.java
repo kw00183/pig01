@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
+import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 
 /**
  * This is the JUnit testing class to test the GreedyStrategy class that
@@ -74,5 +75,33 @@ public class TestWhenGreedyStrategy {
 		}
 
 		assertEquals(false, playerStrategyRolled);
+	}
+
+	/**
+	 * BOUNDARY Test the rollAgain method returns false when points needed is
+	 * negative
+	 */
+	@Test
+	void testRollAgainGreedyReturnFalseNegativePointsNeeded() {
+		RandomStrategy strategy = new RandomStrategy();
+		boolean strategyRolled;
+
+		strategyRolled = strategy.rollAgain(2, 5, -6);
+
+		assertEquals(false, strategyRolled);
+	}
+
+	/**
+	 * BOUNDARY Test the rollAgain method returns false when turn points is
+	 * negative
+	 */
+	@Test
+	void testRollAgainGreedyReturnFalseNegativeTurnPoints() {
+		RandomStrategy strategy = new RandomStrategy();
+		boolean strategyRolled;
+
+		strategyRolled = strategy.rollAgain(2, -5, 6);
+
+		assertEquals(false, strategyRolled);
 	}
 }
