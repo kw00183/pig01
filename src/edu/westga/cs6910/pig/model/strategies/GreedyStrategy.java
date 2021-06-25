@@ -10,11 +10,11 @@ package edu.westga.cs6910.pig.model.strategies;
 public class GreedyStrategy implements PigStrategy {
 
 	@Override
-	public boolean rollAgain(int numberOfTurnRolls, int numberOfTurnPoints,
-			int numberOfPointsNeededForWin) {
+	public boolean rollAgain(int numberOfRollsTakenThisTurn, int numberOfPointsEarnedThisTurn,
+			int numberOfPointsNeededToWin) {
 		boolean shouldPlayerRoll = false;
 		
-		if (numberOfTurnRolls > 0 && numberOfPointsNeededForWin > 0 && numberOfTurnPoints > 0) {
+		if (numberOfRollsTakenThisTurn < 3 && numberOfPointsNeededToWin > 0 && numberOfPointsEarnedThisTurn > 0) {
 			shouldPlayerRoll = true;
 		}
 		return shouldPlayerRoll;
