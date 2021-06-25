@@ -99,6 +99,17 @@ public abstract class AbstractPlayer implements Player {
 	}
 
 	/**
+	 * Method used to return the points needed by the player to win the game
+	 * 
+	 * @see Player#getPointsNeededToWin()
+	 * @return the number of points needed by the player to win (ie hit the
+	 *         goal)
+	 */
+	public int getPointsNeededToWin() {
+		return Game.GOAL_SCORE - this.total;
+	}
+
+	/**
 	 * Method used to return the 2 die values as a string
 	 * 
 	 * @see Player#getDiceValues()
