@@ -14,7 +14,7 @@ public class GreedyStrategy implements PigStrategy {
 			int numberOfPointsNeededForWin) {
 		boolean shouldPlayerRoll = false;
 		
-		if (numberOfTurnRolls < 4) {
+		if (numberOfTurnRolls > 0 && numberOfPointsNeededForWin > 0 && numberOfTurnPoints > 0) {
 			shouldPlayerRoll = true;
 		}
 		return shouldPlayerRoll;
