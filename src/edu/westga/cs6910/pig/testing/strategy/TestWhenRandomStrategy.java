@@ -23,17 +23,17 @@ public class TestWhenRandomStrategy {
 	@Test
 	void testRollAgainRandomReturnFalse() {
 		RandomStrategy strategy = new RandomStrategy();
-		boolean playerStrategyRolledFalse = false;
+		boolean playerStrategyRolled = false;
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
 			strategyRolled = strategy.rollAgain(2, 5, 6);
 			if (!strategyRolled) {
-				playerStrategyRolledFalse = true;
+				playerStrategyRolled = false;
 			}
 		}
 
-		assertEquals(true, playerStrategyRolledFalse);
+		assertEquals(false, playerStrategyRolled);
 	}
 
 	/**
@@ -43,16 +43,16 @@ public class TestWhenRandomStrategy {
 	@Test
 	void testRollAgainRandomReturnTrue() {
 		RandomStrategy strategy = new RandomStrategy();
-		boolean playerStrategyRolledTrue = false;
+		boolean playerStrategyRolled = false;
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
 			strategyRolled = strategy.rollAgain(2, 5, 6);
 			if (strategyRolled) {
-				playerStrategyRolledTrue = true;
+				playerStrategyRolled = true;
 			}
 		}
 
-		assertEquals(true, playerStrategyRolledTrue);
+		assertEquals(true, playerStrategyRolled);
 	}
 }
