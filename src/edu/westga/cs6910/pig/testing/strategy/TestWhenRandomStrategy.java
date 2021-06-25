@@ -55,4 +55,32 @@ public class TestWhenRandomStrategy {
 
 		assertEquals(true, playerStrategyRolled);
 	}
+
+	/**
+	 * BOUNDARY Test the rollAgain method returns false when points needed is
+	 * negative
+	 */
+	@Test
+	void testRollAgainRandomReturnFalseNegativePointsNeeded() {
+		RandomStrategy strategy = new RandomStrategy();
+		boolean strategyRolled;
+
+		strategyRolled = strategy.rollAgain(2, 5, -6);
+
+		assertEquals(false, strategyRolled);
+	}
+
+	/**
+	 * BOUNDARY Test the rollAgain method returns false when turn points is
+	 * negative
+	 */
+	@Test
+	void testRollAgainRandomReturnFalseNegativeTurnPoints() {
+		RandomStrategy strategy = new RandomStrategy();
+		boolean strategyRolled;
+
+		strategyRolled = strategy.rollAgain(2, -5, 6);
+
+		assertEquals(false, strategyRolled);
+	}
 }
