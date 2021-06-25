@@ -99,16 +99,6 @@ public abstract class AbstractPlayer implements Player {
 	}
 
 	/**
-	 * Method used to return the total needed to win the Game
-	 * 
-	 * @see Player#getDifferenceWinTotal()
-	 * @return total the points needed this turn to win
-	 */
-	public int getDifferenceWinTotal() {
-		return 20 - this.total;
-	}
-
-	/**
 	 * Method used to return the 2 die values as a string
 	 * 
 	 * @see Player#getDiceValues()
