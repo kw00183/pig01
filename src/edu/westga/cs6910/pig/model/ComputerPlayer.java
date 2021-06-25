@@ -71,18 +71,21 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {
-		this.setMaximumRolls(3);
+		this.setMaximumRolls();
 		boolean shouldRollAgain = false;
-		
+		int numberOfRollsTakenThisTurn = 0;
+
 		this.processTurn();
-		this.setMaximumRolls(--this.maximumRolls);
-		
+		numberOfRollsTakenThisTurn = this.maximumRolls;
+
 		do {
-			shouldRollAgain = this.strategy.rollAgain(this.maximumRolls, this.getTurnTotal(), Game.GOAL_SCORE - this.getTotal());
-			
+			shouldRollAgain = this.strategy.rollAgain(
+					numberOfRollsTakenThisTurn, this.getTurnTotal(),
+					this.getPointsNeededToWin());
+
 			if (shouldRollAgain) {
 				this.processTurn();
-				this.setMaximumRolls(--this.maximumRolls);
+				numberOfRollsTakenThisTurn++;
 			} else {
 				this.setIsMyTurn(shouldRollAgain);
 			}
