@@ -17,62 +17,62 @@ import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 public class TestWhenGreedyStrategy {
 
 	/**
-	 * SUNNY-DAY Test the rollAgain method returns true at least once if there
-	 * are still rolls left (max 3)
+	 * SUNNY-DAY Test the rollAgain method returns true at least once on second
+	 * roll (max 3 per turn)
 	 */
 	@Test
-	void testRollAgainGreedyReturnTrue1RollLeft() {
+	void testRollAgainGreedyReturnTrueRoll2() {
 		GreedyStrategy strategy = new GreedyStrategy();
-		boolean playerStrategyRolledFalse = false;
+		boolean playerStrategyRolled = false;
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
 			strategyRolled = strategy.rollAgain(1, 5, 6);
 			if (strategyRolled) {
-				playerStrategyRolledFalse = true;
+				playerStrategyRolled = true;
 			}
 		}
 
-		assertEquals(true, playerStrategyRolledFalse);
+		assertEquals(true, playerStrategyRolled);
 	}
 
 	/**
 	 * SUNNY-DAY Test the rollAgain method returns true at least once if this is
-	 * the third roll this turn (max 3)
+	 * the third roll this turn (max 3 per turn)
 	 */
 	@Test
-	void testRollAgainGreedyReturnTrue2RollsLeft() {
+	void testRollAgainGreedyReturnTrueRoll3() {
 		GreedyStrategy strategy = new GreedyStrategy();
-		boolean playerStrategyRolledFalse = false;
+		boolean playerStrategyRolled = false;
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
 			strategyRolled = strategy.rollAgain(2, 5, 6);
 			if (strategyRolled) {
-				playerStrategyRolledFalse = true;
+				playerStrategyRolled = true;
 			}
 		}
 
-		assertEquals(true, playerStrategyRolledFalse);
+		assertEquals(true, playerStrategyRolled);
 	}
 
 	/**
 	 * BOUNDARY Test the rollAgain method returns false if there are no more
-	 * rolls left (max 3)
+	 * rolls left (max 3 per turn)
 	 */
 	@Test
 	void testRollAgainGreedyReturnFalseRoll4() {
 		GreedyStrategy strategy = new GreedyStrategy();
-		boolean playerStrategyRolledFalse = false;
+		boolean playerStrategyRolled = true;
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
-			strategyRolled = strategy.rollAgain(0, 5, 6);
+			strategyRolled = strategy.rollAgain(3, 5, 6);
 			if (!strategyRolled) {
-				playerStrategyRolledFalse = true;
+				playerStrategyRolled = false;
 			}
 		}
 
-		assertEquals(true, playerStrategyRolledFalse);
+		assertEquals(false, playerStrategyRolled);
 	}
 }
