@@ -10,8 +10,8 @@ package edu.westga.cs6910.pig.model.strategies;
 public class CautiousStrategy implements PigStrategy {
 
 	@Override
-	public boolean rollAgain(int numberOfTurnRolls, int numberOfTurnPoints,
-			int numberOfPointsNeededForWin) {
+	public boolean rollAgain(int numberOfRollsTakenThisTurn, int numberOfPointsEarnedThisTurn,
+			int numberOfPointsNeededToWin) {
 		return false;
 	}
 }
