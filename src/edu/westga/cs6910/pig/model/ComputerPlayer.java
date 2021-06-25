@@ -72,25 +72,15 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public void takeTurn() {
 		this.setMaximumRolls();
-		boolean shouldRollAgain = false;
 		int numberOfRollsTakenThisTurn = 0;
 
-		this.processTurn();
-		numberOfRollsTakenThisTurn = this.maximumRolls;
-
 		do {
-			shouldRollAgain = this.strategy.rollAgain(
-					numberOfRollsTakenThisTurn, this.getTurnTotal(),
-					this.getPointsNeededToWin());
-
-			if (shouldRollAgain) {
-				this.processTurn();
-				numberOfRollsTakenThisTurn++;
-			} else {
-				this.setIsMyTurn(shouldRollAgain);
-			}
-
-		} while (shouldRollAgain && this.getIsMyTurn());
+			this.processTurn();
+			numberOfRollsTakenThisTurn = this.maximumRolls++;
+		} while (this.strategy.rollAgain(
+				numberOfRollsTakenThisTurn, this.getTurnTotal(),
+				this.getPointsNeededToWin()));
+		this.setIsMyTurn(false);
 	}
 
 	@Override
