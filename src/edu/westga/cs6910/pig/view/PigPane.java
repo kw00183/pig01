@@ -101,7 +101,7 @@ public class PigPane extends BorderPane {
 		gameMenu.setMnemonicParsing(true);
 		
 		MenuItem exitGameMenuItem = new MenuItem();
-	    exitGameMenuItem.setText("_Exit");
+	    exitGameMenuItem.setText("E_xit");
 	    exitGameMenuItem.setMnemonicParsing(true);
 		
 	    exitGameMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN));
