@@ -17,11 +17,31 @@ import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 public class TestWhenGreedyStrategy {
 
 	/**
-	 * SUNNY-DAY Test the rollAgain method returns true at least once if this is
-	 * the second roll this turn (max 3)
+	 * SUNNY-DAY Test the rollAgain method returns true at least once if there
+	 * are still rolls left (max 3)
 	 */
 	@Test
-	void testRollAgainGreedyReturnTrueRoll2() {
+	void testRollAgainGreedyReturnTrue1RollLeft() {
+		GreedyStrategy strategy = new GreedyStrategy();
+		boolean playerStrategyRolledFalse = false;
+		boolean strategyRolled;
+
+		for (int count = 0; count < 5; count++) {
+			strategyRolled = strategy.rollAgain(1, 5, 6);
+			if (strategyRolled) {
+				playerStrategyRolledFalse = true;
+			}
+		}
+
+		assertEquals(true, playerStrategyRolledFalse);
+	}
+
+	/**
+	 * SUNNY-DAY Test the rollAgain method returns true at least once if this is
+	 * the third roll this turn (max 3)
+	 */
+	@Test
+	void testRollAgainGreedyReturnTrue2RollsLeft() {
 		GreedyStrategy strategy = new GreedyStrategy();
 		boolean playerStrategyRolledFalse = false;
 		boolean strategyRolled;
@@ -37,28 +57,8 @@ public class TestWhenGreedyStrategy {
 	}
 
 	/**
-	 * SUNNY-DAY Test the rollAgain method returns true at least once if this is
-	 * the third roll this turn (max 3)
-	 */
-	@Test
-	void testRollAgainGreedyReturnTrueRoll3() {
-		GreedyStrategy strategy = new GreedyStrategy();
-		boolean playerStrategyRolledFalse = false;
-		boolean strategyRolled;
-
-		for (int count = 0; count < 5; count++) {
-			strategyRolled = strategy.rollAgain(3, 5, 6);
-			if (strategyRolled) {
-				playerStrategyRolledFalse = true;
-			}
-		}
-
-		assertEquals(true, playerStrategyRolledFalse);
-	}
-
-	/**
-	 * BOUNDARY Test the rollAgain method returns false if this is the fourth
-	 * roll this turn (max 3)
+	 * BOUNDARY Test the rollAgain method returns false if there are no more
+	 * rolls left (max 3)
 	 */
 	@Test
 	void testRollAgainGreedyReturnFalseRoll4() {
@@ -67,7 +67,7 @@ public class TestWhenGreedyStrategy {
 		boolean strategyRolled;
 
 		for (int count = 0; count < 5; count++) {
-			strategyRolled = strategy.rollAgain(4, 5, 6);
+			strategyRolled = strategy.rollAgain(0, 5, 6);
 			if (!strategyRolled) {
 				playerStrategyRolledFalse = true;
 			}
