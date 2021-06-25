@@ -10,11 +10,11 @@ package edu.westga.cs6910.pig.model.strategies;
 public class RandomStrategy implements PigStrategy {
 
 	@Override
-	public boolean rollAgain(int numberOfTurnRolls, int numberOfTurnPoints,
-			int numberOfPointsNeededForWin) {
+	public boolean rollAgain(int numberOfRollsTakenThisTurn, int numberOfPointsEarnedThisTurn,
+			int numberOfPointsNeededToWin) {
 		boolean shouldPlayerRoll = false;
 		
-		if (Math.random() < 0.5 && numberOfPointsNeededForWin > 0 && numberOfTurnPoints > 0) {
+		if (Math.random() < 0.5 && numberOfPointsNeededToWin > 0 && numberOfPointsEarnedThisTurn > 0) {
 			shouldPlayerRoll = true;
 		}
 		return shouldPlayerRoll;
