@@ -16,6 +16,7 @@ public class Game implements Observable {
 	 * The goal score for the game
 	 */
 	public static final int GOAL_SCORE = 20;
+	private String firstPlayerLastGame;
 
 	private ObjectProperty<Player> currentPlayerObject;
 	private HumanPlayer theHuman;
@@ -39,6 +40,8 @@ public class Game implements Observable {
 	public Game(HumanPlayer theHuman, ComputerPlayer theComputer) {
 		this.theHuman = theHuman;
 		this.theComputer = theComputer;
+
+		this.firstPlayerLastGame = "";
 
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
 
@@ -113,6 +116,25 @@ public class Game implements Observable {
 	 */
 	public ComputerPlayer getComputerPlayer() {
 		return this.theComputer;
+	}
+
+	/**
+	 * Sets a string of "human" or "computer" based on who was selected to roll first on the last game
+	 * 
+	 * @param firstPlayerLastGame
+	 *            track whether human or computer player started the last game
+	 */
+	public void setFirstPlayerLastGame(String firstPlayerLastGame) {
+		this.firstPlayerLastGame = firstPlayerLastGame;
+	}
+	
+	/**
+	 * Getter for string tracking if the human or computer player was selected to roll first when the last game started.
+	 * 
+	 * @return firstPlayerLastGame did the human or computer player start the game last
+	 */
+	public String getFirstPlayerLastGame() {
+		return this.firstPlayerLastGame;
 	}
 
 	/**
@@ -196,5 +218,4 @@ public class Game implements Observable {
 	public void removeListener(InvalidationListener theListener) {
 		this.currentPlayerObject.removeListener(theListener);
 	}
-
 }
