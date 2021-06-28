@@ -55,7 +55,7 @@ public class PigPane extends BorderPane {
 
 		this.pnContent = new BorderPane();
 
-		this.addFirstPlayerChooserPane(theGame);
+		this.addFirstPlayerChooserPane(this.theGame);
 
 		HBox humanBox = this.buildHumanBox(this.theGame);
 		this.pnContent.setLeft(humanBox);
@@ -66,13 +66,18 @@ public class PigPane extends BorderPane {
 		HBox computerBox = this.buildComputerBox(this.theGame);
 		this.pnContent.setRight(computerBox);
 
-		VBox topBox = new VBox();
-		HBox menuBox = this.addMenu(theGame);
-		HBox playerBox = this.addFirstPlayerChooserPane(this.theGame);
-		topBox.getChildren().addAll(menuBox, playerBox);
+		VBox topBox = this.buildTopBox();
 		this.pnContent.setTop(topBox);
 
 		this.setCenter(this.pnContent);
+	}
+	
+	private VBox buildTopBox() {
+		VBox topBox = new VBox();
+		HBox menuBox = this.addMenu(this.theGame);
+		HBox playerBox = this.addFirstPlayerChooserPane(this.theGame);
+		topBox.getChildren().addAll(menuBox, playerBox);
+		return topBox;
 	}
 
 	private HBox buildHumanBox(Game theGame) {
@@ -160,46 +165,62 @@ public class PigPane extends BorderPane {
 				PigPane.this.theGame = new Game(new HumanPlayer("Human"),
 						new ComputerPlayer(new CautiousStrategy()));
 
-				PigPane.this.pnChooseFirstPlayer.setDisable(true);
-
 				PigPane.this.pnHumanPlayer = new HumanPane(
 						PigPane.this.theGame);
 				PigPane.this.pnComputerPlayer = new ComputerPane(
 						PigPane.this.theGame);
 				PigPane.this.pnGameInfo = new StatusPane(PigPane.this.theGame);
 
-				if (firstPlayerLastGame.equals("") && Math.random() < 0.5) {
-					firstPlayerLastGame = "human";
-				} else if (firstPlayerLastGame.equals("")) {
-					firstPlayerLastGame = "computer";
+				if (firstPlayerLastGame.equals("")) {
+					PigPane.this.resetPigPane();
+				} else if (firstPlayerLastGame.equals("human")) {
+					PigPane.this.resetHumanPlaysFirst(arg0);
+				} else if (firstPlayerLastGame.equals("computer")) {
+					PigPane.this.resetComputerPlaysFirst(arg0);
 				}
-
-				HBox humanBox = PigPane.this
-						.buildHumanBox(PigPane.this.theGame);
-				if (firstPlayerLastGame.equals("human")) {
-					PigPane.NewGamePane humanPlayer = new PigPane.NewGamePane(
-							PigPane.this.theGame);
-					humanPlayer.radHumanPlayer.setSelected(true);
-					humanPlayer.humanPlayerSelection(arg0);
-				}
-				PigPane.this.pnContent.setLeft(humanBox);
-
-				HBox statusBox = PigPane.this
-						.buildStatusBox(PigPane.this.theGame);
-				PigPane.this.pnContent.setCenter(statusBox);
-
-				HBox computerBox = PigPane.this
-						.buildComputerBox(PigPane.this.theGame);
-				if (firstPlayerLastGame.equals("computer")) {
-					PigPane.NewGamePane computerPlayer = new PigPane.NewGamePane(
-							PigPane.this.theGame);
-					computerPlayer.radComputerPlayer.setSelected(true);
-					computerPlayer.computerPlayerSelection(arg0);
-				}
-				PigPane.this.pnContent.setRight(computerBox);
 			}
 		});
 		return newGameMenuItem;
+	}
+	
+	private void resetComputerPlaysFirst(ActionEvent arg0) {
+		HBox humanBox = PigPane.this.buildHumanBox(PigPane.this.theGame);
+		PigPane.this.pnContent.setLeft(humanBox);
+		
+		HBox statusBox = PigPane.this.buildStatusBox(PigPane.this.theGame);
+		PigPane.this.pnContent.setCenter(statusBox);
+		
+		HBox computerBox = PigPane.this.buildComputerBox(PigPane.this.theGame);
+		PigPane.NewGamePane computerPlayer = new PigPane.NewGamePane(PigPane.this.theGame);
+		computerPlayer.computerPlayerSelection(arg0);
+		PigPane.this.pnContent.setRight(computerBox);
+	}
+	
+	private void resetHumanPlaysFirst(ActionEvent arg0) {
+		HBox humanBox = PigPane.this.buildHumanBox(PigPane.this.theGame);
+		PigPane.NewGamePane humanPlayer = new PigPane.NewGamePane(PigPane.this.theGame);
+		humanPlayer.humanPlayerSelection(arg0);
+		PigPane.this.pnContent.setLeft(humanBox);
+		
+		HBox statusBox = PigPane.this.buildStatusBox(PigPane.this.theGame);
+		PigPane.this.pnContent.setCenter(statusBox);
+		
+		HBox computerBox = PigPane.this.buildComputerBox(PigPane.this.theGame);
+		PigPane.this.pnContent.setRight(computerBox);
+	}
+	
+	private void resetPigPane() {
+		HBox humanBox = this.buildHumanBox(this.theGame);
+		this.pnContent.setLeft(humanBox);
+
+		HBox statusBox = this.buildStatusBox(this.theGame);
+		this.pnContent.setCenter(statusBox);
+
+		HBox computerBox = this.buildComputerBox(this.theGame);
+		this.pnContent.setRight(computerBox);
+
+		VBox topBox = this.buildTopBox();
+		this.pnContent.setTop(topBox);
 	}
 
 	private Menu buildStrategyMenu() {
@@ -336,7 +357,6 @@ public class PigPane extends BorderPane {
 		}
 
 		private void randomPlayerSelection(ActionEvent arg0) {
-
 			if (Math.random() < 0.5) {
 				NewGamePane.ComputerFirstListener playComputer = new ComputerFirstListener();
 				playComputer.handle(arg0);
