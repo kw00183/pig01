@@ -111,7 +111,10 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		if (this.theGame.getCurrentPlayer() == this.theComputer) {
 			ComputerPane.this.theComputer.setMaximumRolls();
 			ComputerPane.this.theGame.play();
-			ComputerPane.this.rollsListView.getItems().add(ComputerPane.this.theComputer.getDiceValues());
+			
+			for (String diePair : ComputerPane.this.theComputer.getTurnRollsList()) {
+				ComputerPane.this.rollsListView.getItems().add(diePair);
+			}
 		}
 	}
 
