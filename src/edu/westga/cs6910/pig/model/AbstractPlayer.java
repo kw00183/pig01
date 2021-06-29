@@ -1,5 +1,7 @@
 package edu.westga.cs6910.pig.model;
 
+import java.util.ArrayList;
+
 /**
  * AbstractPlayer represents the shared code for the Human and Computer players
  * and defines methods
@@ -12,6 +14,7 @@ public abstract class AbstractPlayer implements Player {
 	private boolean isMyTurn;
 	private int total;
 	private int turnTotal;
+	private ArrayList<String> turnRollsList;
 
 	/**
 	 * Creates a new AbstractPlayer
@@ -20,6 +23,7 @@ public abstract class AbstractPlayer implements Player {
 	AbstractPlayer() {
 		this.thePair = new DicePair();
 		this.total = 0;
+		this.turnRollsList = new ArrayList<String>();
 	}
 
 	/**
@@ -36,6 +40,8 @@ public abstract class AbstractPlayer implements Player {
 
 		int die1Value = this.thePair.getDie1Value();
 		int die2Value = this.thePair.getDie2Value();
+		
+		this.setTurnRollsList(this.getDiceValues());
 
 		if (die1Value == 1 || die2Value == 1) {
 			this.invalidRoll();
@@ -54,6 +60,34 @@ public abstract class AbstractPlayer implements Player {
 		this.total -= this.turnTotal;
 		this.resetTurnTotal();
 		this.isMyTurn = false;
+	}
+	
+	/**
+	 * Method builds an array list of dice pair values for the current turn
+	 * 
+	 * @param dicePair
+	 *            the dice pair last rolled
+	 */
+	public void setTurnRollsList(String dicePair) {
+		this.turnRollsList.add(dicePair);
+	}
+	
+	/**
+	 * Method returns the current list of dice pairs rolled this turn
+	 * 
+	 * @return turnRollsList
+	 *            the list of dice pairs rolled this turn
+	 */
+	public ArrayList<String> getTurnRollsList() {
+		return this.turnRollsList;
+	}
+	
+	/**
+	 * Method allows the list of dice pairs rolled to clear
+	 * 
+	 */
+	public void resetTurnRollsList() {
+		this.turnRollsList = new ArrayList<String>();
 	}
 
 	/**
