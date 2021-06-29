@@ -113,7 +113,10 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		
 		if (this.theGame.getCurrentPlayer() == this.theHuman) {
 			HumanPane.this.theGame.play();
-			HumanPane.this.rollsListView.getItems().add(HumanPane.this.theHuman.getDiceValues());
+			
+			for (String diePair : HumanPane.this.theHuman.getTurnRollsList()) {
+				HumanPane.this.rollsListView.getItems().add(diePair);
+			}
 		}
 	}
 
