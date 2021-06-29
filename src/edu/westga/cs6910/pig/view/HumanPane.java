@@ -8,8 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * Defines the panel that lets the user indicate whether they want to roll or
@@ -23,6 +25,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 	private Button btnRoll;
 	private Button btnHold;
 	private Label lblTurnTotal;
+	private ListView<String> rollsListView;
 
 	private HumanPlayer theHuman;
 	private Game theGame;
@@ -76,6 +79,14 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		this.lblTurnTotal = new Label("0");
 		bottomBox.getChildren().add(this.lblTurnTotal);
 		this.add(bottomBox, 0, 3);
+		
+		VBox rollBox = new VBox();
+		rollBox.getStyleClass().add("box-center");
+		rollBox.getStyleClass().add("box-padding");
+		Label rollsLabel = new Label("~~ Rolls ~~");
+		this.rollsListView = new ListView<String>();
+		rollBox.getChildren().addAll(rollsLabel, this.rollsListView);
+		this.add(rollBox, 0, 4);
 	}
 
 	@Override
@@ -94,8 +105,20 @@ public class HumanPane extends GridPane implements InvalidationListener {
 			return;
 		}
 	}
+	
+	private void addDicePairToList() {
+		if (this.theGame.getCurrentPlayer() == this.theHuman && HumanPane.this.theHuman.getTurnTotal() == 0) {
+			HumanPane.this.rollsListView.getItems().clear();
+		}
+		
+		if (this.theGame.getCurrentPlayer() == this.theHuman) {
+			HumanPane.this.theGame.play();
+			HumanPane.this.rollsListView.getItems().add(HumanPane.this.theHuman.getDiceValues());
+		}
+	}
 
 	private class TakeTurnListener implements EventHandler<ActionEvent> {
+
 		/**
 		 * Tells the Game to have its current player (i.e., the human Player)
 		 * take its turn.
@@ -104,7 +127,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		@Override
 		public void handle(ActionEvent event) {
 			if (!HumanPane.this.theGame.isGameOver()) {
-				HumanPane.this.theGame.play();
+				HumanPane.this.addDicePairToList();				
 			}
 		}
 	}
