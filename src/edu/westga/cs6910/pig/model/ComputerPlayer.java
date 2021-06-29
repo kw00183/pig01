@@ -73,6 +73,8 @@ public class ComputerPlayer extends AbstractPlayer {
 	public void takeTurn() {
 		this.setMaximumRolls();
 		int numberOfRollsTakenThisTurn = 0;
+		
+		this.resetTurnRollsList();
 
 		do {
 			this.processTurn();
