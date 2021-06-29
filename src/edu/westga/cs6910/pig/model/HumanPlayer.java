@@ -27,6 +27,7 @@ public class HumanPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {
+		this.resetTurnRollsList();
 		this.processTurn();
 	}
 
