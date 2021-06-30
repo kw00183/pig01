@@ -21,13 +21,15 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		CautiousStrategy strategy = new CautiousStrategy();
-		
+
 		primaryStage.setTitle("CS6910: Simple Pig");
-		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(strategy));
+		Game theGame = new Game(new HumanPlayer("Human"),
+				new ComputerPlayer(strategy));
 
 		PigPane root = new PigPane(theGame);
-		Scene scene = new Scene(root, 700, 350);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Scene scene = new Scene(root, 700, 325);
+		scene.getStylesheets().add(
+				getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
