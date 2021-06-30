@@ -75,7 +75,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		this.lblTurnTotal = new Label("0");
 		bottomBox.getChildren().add(this.lblTurnTotal);
 		this.add(bottomBox, 0, 3);
-		
+
 		VBox rollBox = new VBox();
 		rollBox.getStyleClass().add("box-center");
 		rollBox.getStyleClass().add("box-padding");
@@ -102,17 +102,25 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			return;
 		}
 	}
-	
+
+	/**
+	 * Defines logic used to clear the list view at the start of the turn, check
+	 * if the current player is computer and allow them to roll and populate the
+	 * list view in the pane with the dice rolls
+	 * 
+	 */
 	private void addDicePairToList() {
-		if (this.theGame.getCurrentPlayer() == this.theComputer && ComputerPane.this.theComputer.getTurnTotal() == 0) {
+		if (this.theGame.getCurrentPlayer() == this.theComputer
+				&& ComputerPane.this.theComputer.getTurnTotal() == 0) {
 			ComputerPane.this.rollsListView.getItems().clear();
 		}
-		
+
 		if (this.theGame.getCurrentPlayer() == this.theComputer) {
 			ComputerPane.this.theComputer.setMaximumRolls();
 			ComputerPane.this.theGame.play();
-			
-			for (String diePair : ComputerPane.this.theComputer.getTurnRollsList()) {
+
+			for (String diePair : ComputerPane.this.theComputer
+					.getTurnRollsList()) {
 				ComputerPane.this.rollsListView.getItems().add(diePair);
 			}
 		}
