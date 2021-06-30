@@ -79,7 +79,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		this.lblTurnTotal = new Label("0");
 		bottomBox.getChildren().add(this.lblTurnTotal);
 		this.add(bottomBox, 0, 3);
-		
+
 		VBox rollBox = new VBox();
 		rollBox.getStyleClass().add("box-center");
 		rollBox.getStyleClass().add("box-padding");
@@ -105,15 +105,22 @@ public class HumanPane extends GridPane implements InvalidationListener {
 			return;
 		}
 	}
-	
+
+	/**
+	 * Defines logic used to clear the list view at the start of the turn, check
+	 * if the current player is human and allow them to roll and populate the
+	 * list view in the pane with the dice rolls
+	 * 
+	 */
 	private void addDicePairToList() {
-		if (this.theGame.getCurrentPlayer() == this.theHuman && HumanPane.this.theHuman.getTurnTotal() == 0) {
+		if (this.theGame.getCurrentPlayer() == this.theHuman
+				&& HumanPane.this.theHuman.getTurnTotal() == 0) {
 			HumanPane.this.rollsListView.getItems().clear();
 		}
-		
+
 		if (this.theGame.getCurrentPlayer() == this.theHuman) {
 			HumanPane.this.theGame.play();
-			
+
 			for (String diePair : HumanPane.this.theHuman.getTurnRollsList()) {
 				HumanPane.this.rollsListView.getItems().add(diePair);
 			}
@@ -130,7 +137,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		@Override
 		public void handle(ActionEvent event) {
 			if (!HumanPane.this.theGame.isGameOver()) {
-				HumanPane.this.addDicePairToList();				
+				HumanPane.this.addDicePairToList();
 			}
 		}
 	}
