@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
+import edu.westga.cs6910.pig.model.strategies.PigStrategy;
 import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 
 /**
@@ -71,7 +72,11 @@ public class PigPane extends BorderPane {
 
 		this.setCenter(this.pnContent);
 	}
-	
+
+	/**
+	 * Defines the top panel of the border pane containing the menu and the
+	 * player selection objects
+	 */
 	private VBox buildTopBox() {
 		VBox topBox = new VBox();
 		HBox menuBox = this.addMenu(this.theGame);
@@ -80,6 +85,10 @@ public class PigPane extends BorderPane {
 		return topBox;
 	}
 
+	/**
+	 * Defines the left panel of the border pane containing the human player
+	 * objects
+	 */
 	private HBox buildHumanBox(Game theGame) {
 		HBox humanBox = new HBox();
 		humanBox.getStyleClass().add("pane-border");
@@ -90,6 +99,10 @@ public class PigPane extends BorderPane {
 		return humanBox;
 	}
 
+	/**
+	 * Defines the center panel of the border pane containing the game status
+	 * objects
+	 */
 	private HBox buildStatusBox(Game theGame) {
 		HBox statusBox = new HBox();
 		statusBox.getStyleClass().add("pane-border");
@@ -99,6 +112,10 @@ public class PigPane extends BorderPane {
 		return statusBox;
 	}
 
+	/**
+	 * Defines the right panel of the border pane containing the computer player
+	 * objects
+	 */
 	private HBox buildComputerBox(Game theGame) {
 		HBox computerBox = new HBox();
 		computerBox.getStyleClass().add("pane-border");
@@ -109,6 +126,9 @@ public class PigPane extends BorderPane {
 		return computerBox;
 	}
 
+	/**
+	 * Defines the two menus of game and strategy used to build the menu bar
+	 */
 	private HBox addMenu(Game theGame) {
 		Menu gameMenu = this.buildGameMenu();
 		Menu strategyMenu = this.buildStrategyMenu();
@@ -119,6 +139,10 @@ public class PigPane extends BorderPane {
 		return menuBox;
 	}
 
+	/**
+	 * Defines the two menu items of "Exit" and "New Game" that build out the
+	 * game menu
+	 */
 	private Menu buildGameMenu() {
 		Menu gameMenu = new Menu("_Game");
 		gameMenu.setMnemonicParsing(true);
@@ -130,6 +154,10 @@ public class PigPane extends BorderPane {
 		return gameMenu;
 	}
 
+	/**
+	 * Defines the menu item of "Exit" with mnemonic, accelerator and event
+	 * listener
+	 */
 	private MenuItem buildExitMenu() {
 		MenuItem exitGameMenuItem = new MenuItem();
 		exitGameMenuItem.setText("E_xit");
@@ -148,6 +176,10 @@ public class PigPane extends BorderPane {
 		return exitGameMenuItem;
 	}
 
+	/**
+	 * Defines the menu item of "New Game" with mnemonic, accelerator and event
+	 * listener
+	 */
 	private MenuItem buildNewGameMenu() {
 		MenuItem newGameMenuItem = new MenuItem();
 		newGameMenuItem.setText("_New Game");
@@ -160,10 +192,24 @@ public class PigPane extends BorderPane {
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				PigStrategy strategy = new CautiousStrategy();
+
 				String firstPlayerLastGame = PigPane.this.theGame
-						.getFirstPlayerLastGame();
+						.getFirstPlayer();
+
+				String currentStrategy = PigPane.this.theGame
+						.getCurrentStrategy();
+
+				System.out.println("restart = " + currentStrategy);
+
+				if (currentStrategy.equals("greedy")) {
+					strategy = new GreedyStrategy();
+				} else if (currentStrategy.equals("random")) {
+					strategy = new RandomStrategy();
+				}
+
 				PigPane.this.theGame = new Game(new HumanPlayer("Human"),
-						new ComputerPlayer(new CautiousStrategy()));
+						new ComputerPlayer(strategy));
 
 				PigPane.this.pnHumanPlayer = new HumanPane(
 						PigPane.this.theGame);
@@ -182,33 +228,47 @@ public class PigPane extends BorderPane {
 		});
 		return newGameMenuItem;
 	}
-	
+
+	/**
+	 * Defines the objects needed to reset the pig pane if the computer player
+	 * rolls first
+	 */
 	private void resetComputerPlaysFirst(ActionEvent arg0) {
 		HBox humanBox = PigPane.this.buildHumanBox(PigPane.this.theGame);
 		PigPane.this.pnContent.setLeft(humanBox);
-		
+
 		HBox statusBox = PigPane.this.buildStatusBox(PigPane.this.theGame);
 		PigPane.this.pnContent.setCenter(statusBox);
-		
+
 		HBox computerBox = PigPane.this.buildComputerBox(PigPane.this.theGame);
-		PigPane.NewGamePane computerPlayer = new PigPane.NewGamePane(PigPane.this.theGame);
+		PigPane.NewGamePane computerPlayer = new PigPane.NewGamePane(
+				PigPane.this.theGame);
 		computerPlayer.computerPlayerSelection(arg0);
 		PigPane.this.pnContent.setRight(computerBox);
 	}
-	
+
+	/**
+	 * Defines the objects needed to reset the pig pane if the human player
+	 * rolls first
+	 */
 	private void resetHumanPlaysFirst(ActionEvent arg0) {
 		HBox humanBox = PigPane.this.buildHumanBox(PigPane.this.theGame);
-		PigPane.NewGamePane humanPlayer = new PigPane.NewGamePane(PigPane.this.theGame);
+		PigPane.NewGamePane humanPlayer = new PigPane.NewGamePane(
+				PigPane.this.theGame);
 		humanPlayer.humanPlayerSelection(arg0);
 		PigPane.this.pnContent.setLeft(humanBox);
-		
+
 		HBox statusBox = PigPane.this.buildStatusBox(PigPane.this.theGame);
 		PigPane.this.pnContent.setCenter(statusBox);
-		
+
 		HBox computerBox = PigPane.this.buildComputerBox(PigPane.this.theGame);
 		PigPane.this.pnContent.setRight(computerBox);
 	}
-	
+
+	/**
+	 * Defines the objects needed to reset the pig pane if it's a new game with
+	 * no player selected
+	 */
 	private void resetPigPane() {
 		HBox humanBox = this.buildHumanBox(this.theGame);
 		this.pnContent.setLeft(humanBox);
@@ -223,6 +283,10 @@ public class PigPane extends BorderPane {
 		this.pnContent.setTop(topBox);
 	}
 
+	/**
+	 * Defines the toggle group and radio menu buttons needed to build out the
+	 * Strategy menu
+	 */
 	private Menu buildStrategyMenu() {
 		Menu strategyMenu = new Menu("_Strategy");
 		strategyMenu.setMnemonicParsing(true);
@@ -240,6 +304,10 @@ public class PigPane extends BorderPane {
 		return strategyMenu;
 	}
 
+	/**
+	 * Defines the "cautious" strategy radio menu item with mnemonic,
+	 * accelerator and event listener
+	 */
 	private RadioMenuItem buildCautiousStrategyRadio(
 			ToggleGroup strategyGroup) {
 		RadioMenuItem cautiousStrategyMenuItem = new RadioMenuItem("_Cautious");
@@ -257,11 +325,17 @@ public class PigPane extends BorderPane {
 				CautiousStrategy strategyCautious = new CautiousStrategy();
 				PigPane.this.theGame.getComputerPlayer()
 						.setStrategy(strategyCautious);
+				PigPane.this.theGame.setCurrentStrategy("cautious");
+				System.out.println("cautious");
 			}
 		});
 		return cautiousStrategyMenuItem;
 	}
 
+	/**
+	 * Defines the "greedy" strategy radio menu item with mnemonic, accelerator
+	 * and event listener
+	 */
 	private RadioMenuItem buildGreedyStrategyRadio(ToggleGroup strategyGroup) {
 		RadioMenuItem greedyStrategyMenuItem = new RadioMenuItem("Gr_eedy");
 		greedyStrategyMenuItem.setMnemonicParsing(true);
@@ -277,11 +351,17 @@ public class PigPane extends BorderPane {
 				GreedyStrategy strategyGreedy = new GreedyStrategy();
 				PigPane.this.theGame.getComputerPlayer()
 						.setStrategy(strategyGreedy);
+				PigPane.this.theGame.setCurrentStrategy("greedy");
+				System.out.println("greedy");
 			}
 		});
 		return greedyStrategyMenuItem;
 	}
 
+	/**
+	 * Defines the "random" strategy radio menu item with mnemonic, accelerator
+	 * and event listener
+	 */
 	private RadioMenuItem buildRandomStrategyRadio(ToggleGroup strategyGroup) {
 		RadioMenuItem randomStrategyMenuItem = new RadioMenuItem("_Random");
 		randomStrategyMenuItem.setMnemonicParsing(true);
@@ -297,11 +377,17 @@ public class PigPane extends BorderPane {
 				RandomStrategy strategyRandom = new RandomStrategy();
 				PigPane.this.theGame.getComputerPlayer()
 						.setStrategy(strategyRandom);
+				PigPane.this.theGame.setCurrentStrategy("random");
+				System.out.println("random");
 			}
 		});
 		return randomStrategyMenuItem;
 	}
 
+	/**
+	 * Defines the player choice pane that initializes the NewGamePain inner
+	 * class
+	 */
 	private HBox addFirstPlayerChooserPane(Game theGame) {
 		HBox playerBox = new HBox();
 		playerBox.getStyleClass().add("pane-border");
@@ -356,6 +442,9 @@ public class PigPane extends BorderPane {
 			this.getChildren().add(radioBox);
 		}
 
+		/**
+		 * Defines the random 50/50 player selection
+		 */
 		private void randomPlayerSelection(ActionEvent arg0) {
 			if (Math.random() < 0.5) {
 				NewGamePane.ComputerFirstListener playComputer = new ComputerFirstListener();
@@ -366,19 +455,28 @@ public class PigPane extends BorderPane {
 			}
 		}
 
+		/**
+		 * Defines the computer player logic needed for the computer to start as
+		 * first player
+		 */
 		private void computerPlayerSelection(ActionEvent arg0) {
 			NewGamePane.this.radComputerPlayer.setSelected(true);
+
 			PigPane.this.pnComputerPlayer.setDisable(false);
 			PigPane.this.pnChooseFirstPlayer.setDisable(true);
-			PigPane.this.theGame.setFirstPlayerLastGame("computer");
+			PigPane.this.theGame.setFirstPlayer("computer");
 			PigPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
 		}
 
+		/**
+		 * Defines the human player logic needed for the human to start as first
+		 * player
+		 */
 		private void humanPlayerSelection(ActionEvent arg0) {
 			NewGamePane.this.radHumanPlayer.setSelected(true);
 			PigPane.this.pnChooseFirstPlayer.setDisable(true);
 			PigPane.this.pnHumanPlayer.setDisable(false);
-			PigPane.this.theGame.setFirstPlayerLastGame("human");
+			PigPane.this.theGame.setFirstPlayer("human");
 			PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 		}
 
