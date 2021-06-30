@@ -14,7 +14,7 @@ import edu.westga.cs6910.pig.model.HumanPlayer;
  * @version Summer 2021
  *
  */
-public class TestWhenCreateHumanPlayerIsCreated {
+public class TestWhenHumanPlayerIsCreated {
 
 	/**
 	 * SUNNY-DAY Test the constructor accepts the name and initializes the
