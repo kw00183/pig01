@@ -16,7 +16,8 @@ public class Game implements Observable {
 	 * The goal score for the game
 	 */
 	public static final int GOAL_SCORE = 20;
-	private String firstPlayerLastGame;
+	private String firstPlayer;
+	private String currentStrategy;
 
 	private ObjectProperty<Player> currentPlayerObject;
 	private HumanPlayer theHuman;
@@ -41,7 +42,8 @@ public class Game implements Observable {
 		this.theHuman = theHuman;
 		this.theComputer = theComputer;
 
-		this.firstPlayerLastGame = "";
+		this.firstPlayer = "";
+		this.currentStrategy = "";
 
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
 
@@ -119,22 +121,45 @@ public class Game implements Observable {
 	}
 
 	/**
-	 * Sets a string of "human" or "computer" based on who was selected to roll first on the last game
+	 * Sets a string of "human" or "computer" based on who was selected to roll
+	 * first.
 	 * 
-	 * @param firstPlayerLastGame
-	 *            track whether human or computer player started the last game
+	 * @param firstPlayer
+	 *            track whether human or computer player started the game
 	 */
-	public void setFirstPlayerLastGame(String firstPlayerLastGame) {
-		this.firstPlayerLastGame = firstPlayerLastGame;
+	public void setFirstPlayer(String firstPlayer) {
+		this.firstPlayer = firstPlayer;
 	}
-	
+
 	/**
-	 * Getter for string tracking if the human or computer player was selected to roll first when the last game started.
+	 * Getter for string that tracks if the human or computer player was
+	 * selected to roll first when the game started.
 	 * 
-	 * @return firstPlayerLastGame did the human or computer player start the game last
+	 * @return firstPlayer did the human or computer player start the game
 	 */
-	public String getFirstPlayerLastGame() {
-		return this.firstPlayerLastGame;
+	public String getFirstPlayer() {
+		return this.firstPlayer;
+	}
+
+	/**
+	 * Sets a string of "cautious", "greedy" or "random" based the current
+	 * strategy selected in the menu.
+	 * 
+	 * @param currentStrategy
+	 *            track the current strategy chosen in the menu
+	 */
+	public void setCurrentStrategy(String currentStrategy) {
+		this.currentStrategy = currentStrategy;
+	}
+
+	/**
+	 * Getter for string that tracks the current strategy chosen in the menu.
+	 * 
+	 * @return currentStrategy string of the the current strategy selected in
+	 *         the menu
+	 */
+	public String getCurrentStrategy() {
+		return this.currentStrategy;
 	}
 
 	/**
