@@ -200,8 +200,6 @@ public class PigPane extends BorderPane {
 				String currentStrategy = PigPane.this.theGame
 						.getCurrentStrategy();
 
-				System.out.println("restart = " + currentStrategy);
-
 				if (currentStrategy.equals("greedy")) {
 					strategy = new GreedyStrategy();
 				} else if (currentStrategy.equals("random")) {
